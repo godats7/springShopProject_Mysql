@@ -26,9 +26,7 @@ public class DataSourceTest {
         } catch(Exception e) {
             
             e.printStackTrace();
-            e.printStackTrace();
-            e.printStackTrace();
-            
+           
             
         }
         
