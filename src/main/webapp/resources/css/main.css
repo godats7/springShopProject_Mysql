@@ -47,7 +47,7 @@
 	display: inline-block;	
 	text-align: center;		
 }
-.login_button{
+.login_btn{
 	height: 50%;
     background-color: #D4DFE6;
     margin-top: 30px;
@@ -62,7 +62,7 @@
     font-weight: 900;
     display: inline-block;
 }
-.login_button{
+.login_btn{
 	height : 50%;
 	background-color: #D4DFE6;
 	margin-top:30px;
