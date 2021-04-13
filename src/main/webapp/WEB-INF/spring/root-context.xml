@@ -25,7 +25,7 @@
         <property name="dataSource" ref="datasource"></property>
     </bean> 
     
-    <mybatis-spring:scan base-package="com.lwj.mapper"/>
+    <mybatis-spring:scan base-package="com.lwj.mapper"/>   
     <context:component-scan base-package="com.lwj.model"></context:component-scan>
     <context:component-scan base-package="com.lwj.service"></context:component-scan> 
 		
