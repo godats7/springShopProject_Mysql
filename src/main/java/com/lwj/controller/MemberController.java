@@ -37,7 +37,7 @@ public class MemberController {
 			memberService.memberJoin(member);
 			logger.info("join service 성공");
 			
-			return "redirect:/main";
+			return "redirect:/";
 		}
 		
 		//로그인 페이지 이동

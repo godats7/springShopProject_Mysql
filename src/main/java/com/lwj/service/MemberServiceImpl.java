@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberMapper.memberJoin(member);
 		
-		// 3+10 = ?
+		
 		
 	}
 	
