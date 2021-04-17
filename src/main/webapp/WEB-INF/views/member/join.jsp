@@ -24,6 +24,8 @@
 				<div class="id_input_box">
 					<input class="id_input" name="memberId"><!--name은 memberVO에 있는 선언명  -->
 				</div>
+				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+				<span class="id_input_re_2">동일한 아이디가 존재합니다.</span>
 			</div>
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
