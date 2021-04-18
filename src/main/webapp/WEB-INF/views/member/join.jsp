@@ -125,11 +125,14 @@ $('.id_input').on("propertychange - change keyup paste input", function () {
 /* 인증번호 이메일 전송 */
 $(".mail_check_btn").click(function(){
 	var email = $(".mail_input").val();   // 입력한 이메일
-	    
+	    console.log("입력받은 이메일 : " + email)
 	    $.ajax({
 	        
-	        type:"GET",
-	        url:"mailCheck?email=" + email
+	        type:"get",
+	        url:"mailCheck?email=" + email,
+	        success:function(data){
+	        	console.log("data : " + data);
+	        }
 	                
 	    });
     
