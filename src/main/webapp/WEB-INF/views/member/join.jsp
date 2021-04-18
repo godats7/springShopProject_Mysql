@@ -51,10 +51,10 @@
 					<input class="mail_input" name="memberMail"><!--name은 memberVO에 있는 선언명  -->
 				</div>
 				<div class="mail_check_wrap">
-					<div class="mail_check_input_box">
-						<input class="mail_check_input">
+					<div class="mail_check_input_box" id="mail_check_input_box_false">
+						<input class="mail_check_input" disabled="disabled">
 					</div>
-					<div class="mail_check_button">
+					<div class="mail_check_btn">
 						<span>인증번호 전송</span>
 					</div>
 					<div class="clearfix"></div>
@@ -95,6 +95,44 @@ $(document).ready(function(){
 		$("#join_form").attr("action", "/member/join");
 		$("#join_form").submit();
 	});
+});
+
+$('.id_input').on("propertychange - change keyup paste input", function () {
+	
+	/* console.log("keyup test has no problem"); */
+	
+	var memberId = $('.id_input').val(); // .id_input에 입력되는 값
+	var data = {memberId : memberId}  // '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+	
+	$.ajax({
+		type : "post",
+		url : "/member/memberIdChk",
+		data : data,
+		success : function(result){
+			 console.log("성공 여부" + result);
+			 if(result != 'fail'){
+					$('.id_input_re_1').css("display","inline-block");
+					$('.id_input_re_2').css("display", "none");				
+				} else {
+					$('.id_input_re_2').css("display","inline-block");
+					$('.id_input_re_1').css("display", "none");				
+				}
+			
+		}// success 종료
+	}); // end of ajax	
+});
+
+/* 인증번호 이메일 전송 */
+$(".mail_check_btn").click(function(){
+	var email = $(".mail_input").val();   // 입력한 이메일
+	    
+	    $.ajax({
+	        
+	        type:"GET",
+	        url:"mailCheck?email=" + email
+	                
+	    });
+    
 });
 
 </script>
