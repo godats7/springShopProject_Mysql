@@ -163,7 +163,7 @@
 }
  
 #mail_check_input_box_true{
-    background-color:yellow;
+    background-color:white;
 }
  
 .mail_check_input{
@@ -184,6 +184,15 @@
     background-color: #ececf7;
     cursor: pointer;
 }
+
+ 
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}
+ 
 
 /* 주소 영역 */
 .address_wrap{

@@ -113,21 +113,19 @@ public class MemberController {
 	        try {
 	            
 	            MimeMessage message = mailSender.createMimeMessage();
-	            System.out.println("1****");
-	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-	            System.out.println("2****");
-	            helper.setFrom(setFrom);
-	            System.out.println("3****"+helper.toString());
-	            helper.setTo(toMail);
-	            System.out.println("4****"+helper.toString());
-	            helper.setSubject(title);
-	            System.out.println("5****"+helper.toString());
-	            helper.setText(content,true);
-	            System.out.println("6****"+helper.toString());
-	            mailSender.send(message);
-	            System.out.println("7****"+helper.toString());
 	            
-	            System.out.println("¿Ö¾ÊµÇ : "+message.toString());
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            
+	            helper.setFrom(setFrom);
+	            
+	            helper.setTo(toMail);
+	            
+	            helper.setSubject(title);
+	            
+	            helper.setText(content,true);
+	            
+	            mailSender.send(message);
+	          
 	            
 	        }catch(Exception e) {
 	            e.printStackTrace();

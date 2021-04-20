@@ -65,13 +65,14 @@
 						<span>인증번호 전송</span>
 					</div>
 					<div class="clearfix"></div>
+					<span id="mail_check_input_box_warn"></span>
 				</div>
 			</div>
 			<div class="address_wrap">
 				<div class="address_name">주소</div>
 				<div class="address_input_1_wrap">
 					<div class="address_input_1_box">
-						<input class="address_input_1" name="memberAddr1" disabled="readonly"><!--name은 memberVO에 있는 선언명  -->
+						<input class="address_input_1" name="memberAddr1" readonly="readonly"><!--name은 memberVO에 있는 선언명  -->						
 					</div>
 					<div class="address_btn" onclick="show_daum_address()">
 						<span>주소 찾기</span>
@@ -80,12 +81,12 @@
 				</div>
 				<div class ="address_input_2_wrap">
 					<div class="address_input_2_box">
-						<input class="address_input_2" name="memberAddr2" disabled="readonly"><!--name은 memberVO에 있는 선언명  -->
+						<input class="address_input_2" name="memberAddr2" readonly="readonly"><!--name은 memberVO에 있는 선언명  -->
 					</div>
 				</div>
 				<div class ="address_input_3_wrap">
 					<div class="address_input_3_box">
-						<input class="address_input_3"  name="memberAddr3" disabled="readonly"><!--name은 memberVO에 있는 선언명  -->
+						<input class="address_input_3"  name="memberAddr3" readonly="readonly"><!--name은 memberVO에 있는 선언명  -->
 					</div>
 				</div>
 				<span class="final_addr_ck">주소를 입력해주세요.</span>
@@ -108,6 +109,7 @@
  var mailCheck = false;            // 이메일
  var mailnumCheck = false;        // 이메일 인증번호 확인
  var addressCheck = false         // 주소
+ var code = ""; //이메일전송 인증번호 저장위한 코드
 
 //회원가입 버튼(회원가입 기능 작동)
 $(document).ready(function(){
@@ -148,10 +150,43 @@ $(document).ready(function(){
             $('.final_pwck_ck').css('display', 'none');
             pwckCheck = true;
         }
- 
+        
+        /* 이름 유효성검사 */
+        if(name ==""){
+        	$('.final_name_ck').css('display','block');
+            nameCheck = false;
+        }else{
+            $('.final_name_ck').css('display', 'none');
+            nameCheck = true;
+        }
+        
+        /* 이메일 유효성 검사 */
+        if(mail == ""){
+            $('.final_mail_ck').css('display','block');
+            mailCheck = false;
+        }else{
+            $('.final_mail_ck').css('display', 'none');
+            mailCheck = true;
+        }
+        
+        /* 주소 유효성 검사 */
+        if(addr == ""){
+            $('.final_addr_ck').css('display','block');
+            addressCheck = false;
+        }else{
+            $('.final_addr_ck').css('display', 'none');
+            addressCheck = true;
+        }
+        
+        /* 최종 유효성 검사 */
+        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&mailnumCheck&&addressCheck ){
+        	$("#join_form").attr("action", "/member/join");
+    		$("#join_form").submit();
+        } 
+        
+        return false;
 		
-		/* $("#join_form").attr("action", "/member/join");
-		$("#join_form").submit(); */
+		
 	});
 });
 
@@ -185,19 +220,47 @@ $('.id_input').on("propertychange - change keyup paste input", function () {
 
 /* 인증번호 이메일 전송 */
 $(".mail_check_btn").click(function(){
-	var email = $(".mail_input").val();   // 입력한 이메일
-	    console.log("입력받은 이메일 : " + email)
-	    $.ajax({
-	        
-	        type:"get",
-	        url:"mailCheck?email=" + email,
-	        success:function(data){
-	        	console.log("data : " + data);
-	        }
-	                
-	    });
+    
+    var email = $(".mail_input").val();            // 입력한 이메일
+    var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+    var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+    
+    $.ajax({
+        
+        type:"GET",
+        url:"mailCheck?email=" + email,
+        success:function(data){
+            
+            //console.log("data : " + data);
+            cehckBox.attr("disabled",false);
+            boxWrap.attr("id", "mail_check_input_box_true");
+            code = data;
+            
+        }
+                
+    });
     
 });
+
+
+/* 인증번호 비교 */
+$(".mail_check_input").blur(function(){
+    
+    var inputCode = $(".mail_check_input").val();        // 입력코드    
+    var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
+    
+    if(inputCode == code){                            // 일치할 경우
+        checkResult.html("인증번호가 일치합니다.");
+        checkResult.attr("class", "correct");   
+        mailnumCheck = true;
+    } else {                                            // 일치하지 않을 경우
+        checkResult.html("인증번호를 다시 확인해주세요.");
+        checkResult.attr("class", "incorrect");
+        mailnumCheck = false;
+    };    
+    
+});
+
 
 /* 다음 주소 연동 */
 function show_daum_address(){
@@ -240,10 +303,10 @@ function show_daum_address(){
                 }
  
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                $(".address_input_1").val(data.zonecode);
-        	    //$("[name=memberAddr1]").val(data.zonecode);    // 대체가능
-        	    $(".address_input_2").val(addr);
-          		//$("[name=memberAddr2]").val(addr);            // 대체가능
+                //$(".address_input_1").val(data.zonecode);
+        	    $("[name=memberAddr1]").val(data.zonecode);    // 대체가능
+        	    //$(".address_input_2").val(addr);
+          		$("[name=memberAddr2]").val(addr);            // 대체가능
                 // 커서를 상세주소 필드로 이동한다.
        		    // 상세주소 입력란 disabled 속성 변경 및 커서를 상세주소 필드로 이동한다.
                 $(".address_input_3").attr("readonly",false);
