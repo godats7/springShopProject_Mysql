@@ -26,6 +26,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberMapper.idCheck(memberId);
 	}
+
+	@Override
+	public MemberVO memberLogin(MemberVO member) throws Exception {
+		// TODO Auto-generated method stub
+		return memberMapper.memberLogin(member);
+	}
+	
+	
 	
 	
 	
