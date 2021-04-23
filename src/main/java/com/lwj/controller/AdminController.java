@@ -12,7 +12,7 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public void adminMainGet() throws Exception{
 		
 		logger.info("관리자 페이지 들어옴");
