@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberVO {
+public class MemberVO { //DTO랑 조금 다르나 비슷하다고 보자
 	
 		//회원 id		
 		private String memberId;

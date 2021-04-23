@@ -14,6 +14,8 @@
   	</select>
   	<!-- 로그인  -->
   	<select id="memberLogin" resultType="com.lwj.model.MemberVO">
-  		select memberId, memberName, adminCk, money, point from shop_member where memberId = #{memberId} and memberPw = #{memberPw}
+  		select memberId, memberPw, memberName, adminCk, money, point from shop_member where memberId = #{memberId}
+ 		<!-- 인코딩전 비밀번호 이용한 코드 -->
+  		<!-- select memberId, memberName, adminCk, money, point from shop_member where memberId = #{memberId} and memberPw = #{memberPw} -->
   	</select>
   </mapper>

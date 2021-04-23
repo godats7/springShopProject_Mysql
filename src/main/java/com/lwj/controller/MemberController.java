@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,9 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+	
 		//회원가입 페이지 이동
 		@RequestMapping(value = "join", method = RequestMethod.GET)
 		public void joinGet() {
@@ -47,9 +51,19 @@ public class MemberController {
 		public String joinPost(MemberVO member) throws Exception{
 			logger.info("join 진입");
 			
-			//회원가입 서비스 실행
-			memberService.memberJoin(member);
-			logger.info("join service 성공");
+//			//회원가입 서비스 실행(비밀번호 복호화를 위해 주석처리)
+//			memberService.memberJoin(member);
+//			logger.info("join service 성공");
+			
+			 String rawPw = ""; // 인코딩전 비밀번호
+			 String encodedPw = ""; // 인코딩 후 비밀번호
+			 
+			 rawPw = member.getMemberPw(); //비밀번호 데이터get
+			 encodedPw = pwEncoder.encode(rawPw); //비밀번호 데이터 인코딩
+			 member.setMemberPw(encodedPw); //인코딩된 데이터set, member객체에 다시저장
+					 
+			 /* 회원가입 쿼리 실행 */
+		    memberService.memberJoin(member);
 			
 			return "redirect:/";
 		}
@@ -148,20 +162,69 @@ public class MemberController {
 	        System.out.println("login 메서드 진입");
 	        System.out.println("전달된 데이터 : " + member);
 	        
-	        HttpSession session = request.getSession();
+	      //회원가입 서비스 실행(비밀번호 복호화를 위해 주석처리) 
+//	        HttpSession session = request.getSession();
+//	        MemberVO loginVO = memberService.memberLogin(member);
+//	        
+//	        if(loginVO == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+//	            
+//	            int result = 0;
+//	            rttr.addFlashAttribute("result", result);
+//	            return "redirect:/member/login";
+//	            
+//	        }
+//	        
+//	        session.setAttribute("member", loginVO);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+	        
+	        HttpSession session =  request.getSession();
+	        
+	        String rawPw = "";
+	        String encodedPw = "";
+	        
 	        MemberVO loginVO = memberService.memberLogin(member);
 	        
-	        if(loginVO == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+	        if(loginVO != null) {            // 일치하는 아이디 존재시
+	        	
+	        	 rawPw = member.getMemberPw();        // 사용자가 제출한 비밀번호
+	             encodedPw = loginVO.getMemberPw();        // 데이터베이스에 저장한 인코딩된 비밀번호
+	             
+	             if(true == pwEncoder.matches(rawPw, encodedPw)) {        // 비밀번호 일치여부 판단
+	            	 
+	            	 loginVO.setMemberPw("");                    // 인코딩된 비밀번호 정보 지움
+	                 session.setAttribute("member", loginVO);     // session에 사용자의 정보 저장
+	                 return "redirect:/";        // 메인페이지 이동
+	                 
+	             } else {
+	            	 
+	            	 rttr.addFlashAttribute("result", 0); //parameter 숨기기
+			         return "redirect:/member/login";
+			            	                 
+	             }
+	        	
 	            
-	            int result = 0;
-	            rttr.addFlashAttribute("result", result);
-	            return "redirect:/member/login";
+	        } else {                    // 일치하는 아이디가 존재하지 않을 시 (로그인 실패)
 	            
+	        	 rttr.addFlashAttribute("result", 0); //parameter 숨기기
+		         return "redirect:/member/login";           
+      	
 	        }
 	        
-	        session.setAttribute("member", loginVO);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-	        
-	        return "redirect:/";
+	       
+	    }
+	    /* 메인페이지 로그아웃 */
+	    @RequestMapping(value = "logout.do", method = RequestMethod.GET)
+	    public String logoutMainGet(HttpServletRequest request) throws Exception{
+	    	
+	    	logger.info("logoutMainGet 들어옴");
+	    	
+	    	HttpSession session = request.getSession();
+	    	
+	    	 session.invalidate(); //세션전체 무효화
+	    	 System.out.println("세선 무효화 완료"); 	 
+	         
+	         return "redirect:/";
+	         
+	         
 	    }
 
 }

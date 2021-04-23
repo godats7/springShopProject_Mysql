@@ -11,8 +11,35 @@
 </head>
 <body>
 	<div class="wrapper">
-		<div class="top_ad_area">
-			<h1>ad_area</h1>		
+		<div class="top_gnb_area">
+			 <ul class="list">
+			 <c:if test="${member == null }">
+                <li >
+                    <a href="/member/login">로그인</a>
+                </li>
+                <li>
+                    <a href="/member/join">회원가입</a>
+                </li>
+                <li>
+                    고객센터
+                </li>
+            </c:if>
+             <c:if test="${member != null }">             
+             		<c:if test="${member.adminCk == 1 }">
+                        <li><a href="/admin/main">관리자 페이지</a></li>
+                    </c:if>   
+                              
+                    <li>
+                        로그아웃
+                    </li>
+                    <li>
+                        마이룸
+                    </li>
+                    <li>
+                        장바구니
+                    </li>
+                </c:if>              
+            </ul>  		
 		</div>
 		<div class="top_area">
 			<div class="logo_area">
@@ -37,6 +64,7 @@
        					  <fmt:formatNumber value="${member.money }" pattern="\#,###.##"/></span>
                         <span>포인트 :
                           <fmt:formatNumber value="${member.point }" pattern="#,###" /></span>
+                        <a href="/member/logout.do">로그아웃</a>
                     </div>            
                 </c:if>
 			</div>
