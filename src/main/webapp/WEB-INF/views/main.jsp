@@ -8,6 +8,10 @@
 <meta charset="EUC-KR">
 <title>:: Welcome to Wookdol`s ImageShop ::</title>
 <link rel="stylesheet" href="resources/css/main.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -30,7 +34,7 @@
                     </c:if>   
                               
                     <li>
-                        로그아웃
+                     	<a id="gnb_logout_btn">로그아웃</a>   
                     </li>
                     <li>
                         마이룸
@@ -43,7 +47,7 @@
 		</div>
 		<div class="top_area">
 			<div class="logo_area">
-				<h1>logo_area</h1>
+				<a href="/"><img src="resources/img/mLogo.png"></a>
 			</div>
 			<div class="search_area">
 				<h1>search_area</h1>
@@ -64,7 +68,7 @@
        					  <fmt:formatNumber value="${member.money }" pattern="\#,###.##"/></span>
                         <span>포인트 :
                           <fmt:formatNumber value="${member.point }" pattern="#,###" /></span>
-                        <a href="/member/logout.do">로그아웃</a>
+                        <a id="logout_btn"  href="/member/logout.do">로그아웃</a><!-- -->
                     </div>            
                 </c:if>
 			</div>
@@ -75,9 +79,62 @@
 		</div>
 		<div class="content_area">
 			<h1>content_area</h1>
-		</div>
+		</div><!-- class wrap -->
+		
+		<!-- Footer 영역 -->
+        <div class="footer_nav">
+            <div class="footer_nav_container">
+                <ul>
+                    <li>회사소개</li>
+                    <span class="line">|</span>
+                    <li>이용약관</li>
+                    <span class="line">|</span>
+                    <li>고객센터</li>
+                    <span class="line">|</span>
+                    <li>광고문의</li>
+                    <span class="line">|</span>
+                    <li>채용정보</li>
+                    <span class="line">|</span>
+                </ul>
+            </div>
+        </div> <!-- class="footer_nav" -->
+        
+        <div class="footer">
+            <div class="footer_container">
+                
+                <div class="footer_left">
+                    <img src="resources/img/Logo.png">
+                </div>
+                <div class="footer_right">
+                    (주) wookdolman    owner : Lee wookjong
+                    <br>
+                    business number : 123-456-7890
+                    <br>
+                    Tel. : 02-1234-5678(발신자 부담전화)
+                    <br>
+                    <br>
+                    COPYRIGHT(C) <strong>wookdolman co.</strong>    ALL RIGHTS RESERVED.
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div> <!-- class="footer" -->  
 	
-	</div>
-
+	</div> <!-- class wrapper -->
+<script>
+	$("#gnb_logout_btn").click(function() {
+		//alert("로그아웃 완료");
+		$.ajax({
+			type:"POST",
+			url:"/member/logout.do",
+			success:function(data){
+				alert("로그아웃 완료");
+				document.location.reload();	
+			}
+			
+		});//ajax
+		console.log("로그아웃완료");
+		
+	});
+</script>
 </body>
 </html>
