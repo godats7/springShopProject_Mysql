@@ -35,22 +35,25 @@
                 <!-- 네비영역 -->
                 <div class="admin_navi_wrap">
                   <ul>
-                      <li >
-                          <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
-                      </li>
-                      <li>
-                          <a class="admin_list_02" href="/admin/goodsManage">상품 관리</a>
-                      </li>
-                      <lI>
-                          <a class="admin_list_03" href="/admin/authorEnroll">작가 등록</a>                            
-                      </lI>
-                      <lI>
-                          <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
-                      </lI>
-                      <lI>
-                          <a class="admin_list_05">회원 관리</a>                            
-                      </lI>                                                                                             
-                  </ul>
+                        <li >
+                            <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
+                        </li>
+                        <li>
+                            <a class="admin_list_02" href="/admin/goodsManage">상품 목록</a>
+                        </li>
+                        <lI>
+                            <a class="admin_list_03" href="/admin/authorEnroll">작가 등록</a>                            
+                        </lI>
+                        <lI>
+                            <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
+                        </lI>
+                        <lI>
+                            <a class="admin_list_05" href="">장르 관리</a>                            
+                        </lI>
+                        <lI>	
+                            <a class="admin_list_06">회원 관리</a>                            
+                        </lI>                                                                                             
+                    </ul>
                 </div>
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 관리</span></div>
@@ -58,23 +61,8 @@
                 <div class="clearfix"></div>
             </div>
         
+        
         <!-- Footer 영역 -->
-        <div class="footer_nav">
-            <div class="footer_nav_container">
-                <ul>
-                    <li>회사소개</li>
-                    <span class="line">|</span>
-                    <li>이용약관</li>
-                    <span class="line">|</span>
-                    <li>고객센터</li>
-                    <span class="line">|</span>
-                    <li>광고문의</li>
-                    <span class="line">|</span>
-                    <li>채용정보</li>
-                    <span class="line">|</span>
-                </ul>
-            </div>
-        <<!-- Footer 영역 -->
         <div class="footer_nav">
             <div class="footer_nav_container">
                 <ul>
@@ -96,7 +84,7 @@
             <div class="footer_container">
                 
                 <div class="footer_left">
-                    <img src="resources/img/Logo.png">
+                    <img src="../resources/img/Logo.png">
                 </div>
                 <div class="footer_right">
                     (주) wookdolman    owner : Lee wookjong
