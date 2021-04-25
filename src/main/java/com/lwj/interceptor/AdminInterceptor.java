@@ -19,7 +19,7 @@ public class AdminInterceptor implements HandlerInterceptor{
 		
 		MemberVO loginVO = (MemberVO)session.getAttribute("member");
 		
-		if(loginVO == null || loginVO.getAdminCk() == 0 ) { // °ü¸®ÀÚ °èÁ¤ÀÌ ¾Æ´Ñ°æ¿ì
+		if(loginVO == null || loginVO.getAdminCk() == 0 ) { // ê´€ë¦¬ìê°€ ì•„ë‹ë•Œ
 			
 			response.sendRedirect("/");
 			

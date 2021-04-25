@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/main.css">
+<link rel="stylesheet" href="../resources/css/admin/goodsEnroll.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -34,39 +34,46 @@
             <div class="admin_wrap">
                 <!-- 네비영역 -->
                 <div class="admin_navi_wrap">
-                    <ul>
-                        <li >
-                            <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
-                        </li>
-                        <li>
-                            <a class="admin_list_02" href="/admin/goodsManage">상품 목록</a>
-                        </li>
-                        <lI>
-                            <a class="admin_list_03" href="/admin/authorEnroll">작가 등록</a>                            
-                        </lI>
-                        <lI>
-                            <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
-                        </lI>
-                        <lI>
-                            <a class="admin_list_05" href="">장르 관리</a>                            
-                        </lI>
-                        <lI>
-                            <a class="admin_list_06">회원 관리</a>                            
-                        </lI>                                                                                             
-                    </ul>
-<!-- 
-                    <div class="admin_list_01">
-                        <a>상품 관리</a>
-                    </div>
-                     -->
+                  <ul>
+                      <li >
+                          <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
+                      </li>
+                      <li>
+                          <a class="admin_list_02" href="/admin/goodsManage">상품 관리</a>
+                      </li>
+                      <lI>
+                          <a class="admin_list_03" href="/admin/authorEnroll">작가 등록</a>                            
+                      </lI>
+                      <lI>
+                          <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
+                      </lI>
+                      <lI>
+                          <a class="admin_list_05">회원 관리</a>                            
+                      </lI>                                                                                             
+                  </ul>
                 </div>
                 <div class="admin_content_wrap">
-                    <div>관리자 페이지 입니다.</div>
+                    <div class="admin_content_subject"><span>상품 등록</span></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div><!-- end of class wrap -->
         
+        <!-- Footer 영역 -->
+        <div class="footer_nav">
+            <div class="footer_nav_container">
+                <ul>
+                    <li>회사소개</li>
+                    <span class="line">|</span>
+                    <li>이용약관</li>
+                    <span class="line">|</span>
+                    <li>고객센터</li>
+                    <span class="line">|</span>
+                    <li>광고문의</li>
+                    <span class="line">|</span>
+                    <li>채용정보</li>
+                    <span class="line">|</span>
+                </ul>
+            </div>
         <!-- Footer 영역 -->
         <div class="footer_nav">
             <div class="footer_nav_container">
@@ -85,7 +92,7 @@
             </div>
         </div> <!-- class="footer_nav" -->
         
-        <div class="footer">
+       <div class="footer">
             <div class="footer_container">
                 
                 <div class="footer_left">
@@ -103,9 +110,10 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div> <!-- class="footer" --> 
+        </div> <!-- class="footer" -->          
         
-    </div><!-- end of class wrapper -->
+    </div>    <!-- class="wrap" -->
+</div>    <!-- class="wrapper" -->
  
 </body>
 </html>

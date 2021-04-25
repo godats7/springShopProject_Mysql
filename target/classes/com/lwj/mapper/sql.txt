@@ -1,19 +1,18 @@
-
-ÀÌ¹ÌÁö Àå¸£ Å×ÀÌºí »ı¼º
+ì´ë¯¸ì§€ ì¥ë¥´ í…Œì´ë¸” ìƒì„±
 create table image_genre(
     genreId varchar(2) primary key,
     genreName varchar(50)
 );
 
-ÀÌ¹ÌÁö Àå¸£ Å×ÀÌºí µ¥ÀÌÅÍ
-insert into image_genre values ('01', '±Í¿©¿î');
-insert into image_genre values ('02', '½Åºñ·Î¿î');
-insert into image_genre values ('03', '¿õÀåÇÑ');
-insert into image_genre values ('04', '¹«¼­¿î');
-insert into image_genre values ('05', 'ÀÚ¿¬ÀÇ');
-insert into image_genre values ('06', '¿ìÁÖÀÇ');
+ì´ë¯¸ì§€ ì¥ë¥´ í…Œì´ë¸” ë°ì´í„°
+insert into image_genre values ('01', 'ê·€ì—¬ìš´');
+insert into image_genre values ('02', 'ì‹ ë¹„ë¡œìš´');
+insert into image_genre values ('03', 'ì›…ì¥í•œ');
+insert into image_genre values ('04', 'ë¬´ì„œìš´');
+insert into image_genre values ('05', 'ìì—°ì˜');
+insert into image_genre values ('06', 'ìš°ì£¼ì˜');
 
-ÀÌ¹ÌÁö ÀÛ°¡ Å×ÀÌºí
+ì´ë¯¸ì§€ ì‘ê°€ í…Œì´ë¸”
 create table image_author(
     authorId int auto_increment primary key,
     authorName varchar(50),
@@ -22,8 +21,8 @@ create table image_author(
     foreign key (genreId) references image_genre(genreId)
     );
     
-ÀÌ¹ÌÁö ÀÛ°¡ Á¤º¸     
-insert into image_author(authorName, genreId, authorIntro) values('Ä«¿ÍÀÌ', '01', '±Í¿©¿î ÀÌ¹ÌÁöÀÇ ÀÛ°¡ ¼Ò°³ÀÔ´Ï´Ù' );
-insert into image_author(authorName, genreId, authorIntro) values('ÈÄ½Ã±â', '02', '½Åºñ·Î¿î ÀÌ¹ÌÁöÀÇ ÀÛ°¡ ¼Ò°³ÀÔ´Ï´Ù' );
-insert into image_author(authorName, genreId, authorIntro) values('½ºÆåÅ¸Å¬', '03', '¿õÀåÇÑ ÀÌ¹ÌÁöÀÇ ÀÛ°¡ ¼Ò°³ÀÔ´Ï´Ù' );
+ì´ë¯¸ì§€ ì‘ê°€ ì •ë³´     
+insert into image_author(authorName, genreId, authorIntro) values('ì¹´ì™€ì´', '01', 'ê·€ì—¬ìš´ ì´ë¯¸ì§€ì˜ ì‘ê°€ ì†Œê°œì…ë‹ˆë‹¤' );
+insert into image_author(authorName, genreId, authorIntro) values('í›„ì‹œê¸°', '02', 'ì‹ ë¹„ë¡œìš´ ì´ë¯¸ì§€ì˜ ì‘ê°€ ì†Œê°œì…ë‹ˆë‹¤' );
+insert into image_author(authorName, genreId, authorIntro) values('ìŠ¤í™íƒ€í´', '03', 'ì›…ì¥í•œ ì´ë¯¸ì§€ì˜ ì‘ê°€ ì†Œê°œì…ë‹ˆë‹¤' );
     

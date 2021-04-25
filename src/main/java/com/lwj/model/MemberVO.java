@@ -5,42 +5,42 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberVO { //DTO¶û Á¶±İ ´Ù¸£³ª ºñ½ÁÇÏ´Ù°í º¸ÀÚ
+public class MemberVO { //DTOë‘ ì¡°ê¸ˆ ë‹¤ë¥´ë‚˜ ë¹„ìŠ·í•˜ë‹¤ê³  ë³´ì
 	
-		//È¸¿ø id		
+		//íšŒì› id		
 		private String memberId;
 		
-		//È¸¿ø ºñ¹Ğ¹øÈ£
+		//íšŒì› ë¹„ë°€ë²ˆí˜¸
 		private String memberPw;
 		
-		//È¸¿ø ÀÌ¸§
+		//íšŒì› ì´ë¦„
 		private String memberName;
 		
-		//È¸¿ø ÀÌ¸ŞÀÏ
+		//íšŒì› ì´ë©”ì¼
 		private String memberMail;
 		
-		//È¸¿ø ¿ìÆí¹øÈ£
+		//íšŒì› ìš°í¸ë²ˆí˜¸
 		private String memberAddr1;
 		
-		//È¸¿ø ÁÖ¼Ò
+		//íšŒì› ì£¼ì†Œ
 		private String memberAddr2;
 			
-		//È¸¿ø »ó¼¼ÁÖ¼Ò
+		//íšŒì› ìƒì„¸ì£¼ì†Œ
 		private String memberAddr3;
 		
-		// °ü¸®ÀÚ ±¸ºĞ(0:ÀÏ¹İ»ç¿ëÀÚ, 1:°ü¸®ÀÚ)
+		// ê´€ë¦¬ì êµ¬ë¶„(0:ì¼ë°˜ì‚¬ìš©ì, 1:ê´€ë¦¬ì)
 		private int adminCk;
 		
-		//µî·ÏÀÏÀÚ
+		//ë“±ë¡ì¼ì
 		private int regDate;
 		
-		//È¸¿ø µ·
+		//íšŒì› ëˆ
 		private int money;
 		
-		//È¸¿ø Æ÷ÀÎÆ®
+		//íšŒì› í¬ì¸íŠ¸
 		private int point;
 		
-	/* lombok»ç¿ë */
+	/* lombokì‚¬ìš© */
 		
 		public String getMemberId() {
 			return memberId;

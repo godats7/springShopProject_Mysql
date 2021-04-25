@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ImageController {
-	/* log4j ¾î³ëÅ×ÀÌ¼ÇÀ¸·Î »ç¿ë»ç´É(lombok »ç¿ë½Ã) */
+	/* log4j ì–´ë…¸í…Œì´ì…˜ìœ¼ë¡œ ì‚¬ìš©ì‚¬ëŠ¥(lombok ì‚¬ìš©ì‹œ) */
 	private static final Logger logger = LoggerFactory.getLogger("ImageController.class");
 
-	/* ¸ŞÀÎÆäÀÌÁö ÀÌµ¿ */
+	/* ë©”ì¸í˜ì´ì§€ ì´ë™ */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
 	public String mainPageGet() {
-		System.out.println("mainµé¾î¿Ô´Ù");
-		logger.info("¸ŞÀÎÆäÀÌÁö");
-		System.out.println("main³ª°£´Ù");
+		System.out.println("mainë“¤ì–´ì™”ë‹¤");
+		logger.info("ë©”ì¸í˜ì´ì§€");
+		System.out.println("mainë‚˜ê°„ë‹¤");
 		
 		return "main";
 	
 		
 	
 }
-/* ¾Æ·¡ÀÇ ¹æ¹ıÀÌ ¾ÈµÇ¼­ ¸®ÅÏÀ¸·Î ÇÔ  (org.springframework.web.servlet.pagenotfound - no mapping for get) */
+/* ì•„ë˜ì˜ ë°©ë²•ì´ ì•ˆë˜ì„œ ë¦¬í„´ìœ¼ë¡œ í•¨  (org.springframework.web.servlet.pagenotfound - no mapping for get) */
 
 //@Controller
 //public class ImageController {
-//	/* log4j ¾î³ëÅ×ÀÌ¼ÇÀ¸·Î »ç¿ë»ç´É(lombok »ç¿ë½Ã) */
+//	/* log4j ì–´ë…¸í…Œì´ì…˜ìœ¼ë¡œ ì‚¬ìš©ì‚¬ëŠ¥(lombok ì‚¬ìš©ì‹œ) */
 //	private static final Logger logger = LoggerFactory.getLogger("ImageController.class");
 //
-//	/* ¸ŞÀÎÆäÀÌÁö ÀÌµ¿ */
+//	/* ë©”ì¸í˜ì´ì§€ ì´ë™ */
 //	@RequestMapping(value = "/main", method = RequestMethod.GET)	
 //	public void mainPageGet() {
-//		System.out.println("µé¾î¿Ô´Ù");
-//		logger.info("¸ŞÀÎÆäÀÌÁö");
-//		System.out.println("³ª°£´Ù");			
+//		System.out.println("ë“¤ì–´ì™”ë‹¤");
+//		logger.info("ë©”ì¸í˜ì´ì§€");
+//		System.out.println("ë‚˜ê°„ë‹¤");			
 //		
 //		
 //	}

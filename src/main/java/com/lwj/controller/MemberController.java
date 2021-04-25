@@ -28,7 +28,7 @@ public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger("MemberController.class");
 	
-	//È¸¿ø°¡ÀÔÀ» À§ÇÑ memberService
+	//íšŒì›ê°€ì…ì„ ìœ„í•œ memberService
 	@Autowired
 	private MemberService memberService;
 	
@@ -38,94 +38,94 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
-		//È¸¿ø°¡ÀÔ ÆäÀÌÁö ÀÌµ¿
+		//íšŒì›ê°€ì… í˜ì´ì§€ ì´ë™
 		@RequestMapping(value = "join", method = RequestMethod.GET)
 		public void joinGet() {
 			System.out.println("join in");
-			logger.info("È¸¿ø°¡ÀÔ ÆäÀÌÁö ÁøÀÔ");
+			logger.info("íšŒì›ê°€ì… í˜ì´ì§€ ì§„ì…");
 			System.out.println("join out");		
 		}
 		
-		//È¸¿ø°¡ÀÔ
+		//íšŒì›ê°€ì…
 		@RequestMapping(value = "/join", method = RequestMethod.POST)
 		public String joinPost(MemberVO member) throws Exception{
-			logger.info("join ÁøÀÔ");
+			logger.info("join ì§„ì…");
 			
-//			//È¸¿ø°¡ÀÔ ¼­ºñ½º ½ÇÇà(ºñ¹Ğ¹øÈ£ º¹È£È­¸¦ À§ÇØ ÁÖ¼®Ã³¸®)
+//			//íšŒì›ê°€ì… ì„œë¹„ìŠ¤ ì‹¤í–‰(ë¹„ë°€ë²ˆí˜¸ ë³µí˜¸í™”ë¥¼ ìœ„í•´ ì£¼ì„ì²˜ë¦¬)
 //			memberService.memberJoin(member);
-//			logger.info("join service ¼º°ø");
+//			logger.info("join service ì„±ê³µ");
 			
-			 String rawPw = ""; // ÀÎÄÚµùÀü ºñ¹Ğ¹øÈ£
-			 String encodedPw = ""; // ÀÎÄÚµù ÈÄ ºñ¹Ğ¹øÈ£
+			 String rawPw = ""; // ì¸ì½”ë”©ì „ ë¹„ë°€ë²ˆí˜¸
+			 String encodedPw = ""; // ì¸ì½”ë”© í›„ ë¹„ë°€ë²ˆí˜¸
 			 
-			 rawPw = member.getMemberPw(); //ºñ¹Ğ¹øÈ£ µ¥ÀÌÅÍget
-			 encodedPw = pwEncoder.encode(rawPw); //ºñ¹Ğ¹øÈ£ µ¥ÀÌÅÍ ÀÎÄÚµù
-			 member.setMemberPw(encodedPw); //ÀÎÄÚµùµÈ µ¥ÀÌÅÍset, member°´Ã¼¿¡ ´Ù½ÃÀúÀå
+			 rawPw = member.getMemberPw(); //ë¹„ë°€ë²ˆí˜¸ ë°ì´í„°get
+			 encodedPw = pwEncoder.encode(rawPw); //ë¹„ë°€ë²ˆí˜¸ ë°ì´í„° ì¸ì½”ë”©
+			 member.setMemberPw(encodedPw); //ì¸ì½”ë”©ëœ ë°ì´í„°set, memberê°ì²´ì— ë‹¤ì‹œì €ì¥
 					 
-			 /* È¸¿ø°¡ÀÔ Äõ¸® ½ÇÇà */
+			 /* íšŒì›ê°€ì… ì¿¼ë¦¬ ì‹¤í–‰ */
 		    memberService.memberJoin(member);
 			
 			return "redirect:/";
 		}
 		
-		//·Î±×ÀÎ ÆäÀÌÁö ÀÌµ¿
+		//ë¡œê·¸ì¸ í˜ì´ì§€ ì´ë™
 		@RequestMapping(value = "login", method = RequestMethod.GET)
 		public void loginGet() {
 			System.out.println("login in");
-			logger.info("·Î±×ÀÎ ÆäÀÌÁö ÁøÀÔ");
+			logger.info("ë¡œê·¸ì¸ í˜ì´ì§€ ì§„ì…");
 			System.out.println("login out");
 		}
 		
-		//¾ÆÀÌµğ Áßº¹ °Ë»ç
+		//ì•„ì´ë”” ì¤‘ë³µ ê²€ì‚¬
 		@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
 		@ResponseBody
 		public String memberIdChkPost(String memberId) throws Exception{
 			System.out.println("memberIdChk in");
-			logger.info("memberIdChk ÁøÀÔ");
+			logger.info("memberIdChk ì§„ì…");
 									
 			int result = memberService.idCheck(memberId);
 			
-			logger.info("°á°ú°ª = " + result);
+			logger.info("ê²°ê³¼ê°’ = " + result);
 			
 			
 			System.out.println("memberIdChk out");	
 			
 			if(result != 0) {
 				
-				return "fail";	// Áßº¹ ¾ÆÀÌµğ°¡ Á¸Àç
+				return "fail";	// ì¤‘ë³µ ì•„ì´ë””ê°€ ì¡´ì¬
 				
 			} else {
 				
-				return "success";	// Áßº¹ ¾ÆÀÌµğ x
+				return "success";	// ì¤‘ë³µ ì•„ì´ë”” x
 				
 			}
 			
 			
 		}
 		
-		/* ÀÌ¸ŞÀÏ ÀÎÁõ ±â´É*/
+		/* ì´ë©”ì¼ ì¸ì¦ ê¸°ëŠ¥*/
 		@RequestMapping(value = "/mailCheck", method = RequestMethod.GET)
 		@ResponseBody
 		public String mailCheckGet(String email) throws Exception{
 			System.out.println("mail chk in");
-			 /* ºä(View)·ÎºÎÅÍ ³Ñ¾î¿Â µ¥ÀÌÅÍ È®ÀÎ */
-	        logger.info("ÀÌ¸ŞÀÏ µ¥ÀÌÅÍ Àü¼Û È®ÀÎ");
-	        logger.info("ÀÎÁõ¹øÈ£ : " + email);
+			 /* ë·°(View)ë¡œë¶€í„° ë„˜ì–´ì˜¨ ë°ì´í„° í™•ì¸ */
+	        logger.info("ì´ë©”ì¼ ë°ì´í„° ì „ì†¡ í™•ì¸");
+	        logger.info("ì¸ì¦ë²ˆí˜¸ : " + email);
 	        
 	        Random random =new Random();
-	        int checkNum = random.nextInt(888888) + 111111; //111111~999999ÀÇ ¼ıÀÚ
-	        logger.info("ÀÎÁõ¹øÈ£ : "+checkNum);
-	        System.out.println("ÀÎÁõ¹øÈ£ : "+checkNum);
-	        /* ÀÌ¸ŞÀÏ º¸³»±â */
-	        String setFrom = "godats7@naver.com"; //root-context¶û µ¿ÀÏÇÏ°Ô
-	        String toMail = email; //join.jsp¿¡¼­ ¹ŞÀº email
-	        String title = "È¸¿ø°¡ÀÔ ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.";
+	        int checkNum = random.nextInt(888888) + 111111; //111111~999999ì˜ ìˆ«ì
+	        logger.info("ì¸ì¦ë²ˆí˜¸ : "+checkNum);
+	        System.out.println("ì¸ì¦ë²ˆí˜¸ : "+checkNum);
+	        /* ì´ë©”ì¼ ë³´ë‚´ê¸° */
+	        String setFrom = "godats7@naver.com"; //root-contextë‘ ë™ì¼í•˜ê²Œ
+	        String toMail = email; //join.jspì—ì„œ ë°›ì€ email
+	        String title = "íšŒì›ê°€ì… ì¸ì¦ ì´ë©”ì¼ ì…ë‹ˆë‹¤.";
 	        String content = 
-	                "wookdol`s imageshopÀ» ¹æ¹®ÇØÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù." +
+	                "wookdol`s imageshopì„ ë°©ë¬¸í•´ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤." +
 	                "<br><br>" + 
-	                "ÀÎÁõ ¹øÈ£´Â " + checkNum + "ÀÔ´Ï´Ù." + 
+	                "ì¸ì¦ ë²ˆí˜¸ëŠ” " + checkNum + "ì…ë‹ˆë‹¤." + 
 	                "<br>" + 
-	                "ÇØ´ç ÀÎÁõ¹øÈ£¸¦ ÀÎÁõ¹øÈ£ È®ÀÎ¶õ¿¡ ±âÀÔÇÏ¿© ÁÖ¼¼¿ä.";
+	                "í•´ë‹¹ ì¸ì¦ë²ˆí˜¸ë¥¼ ì¸ì¦ë²ˆí˜¸ í™•ì¸ë€ì— ê¸°ì…í•˜ì—¬ ì£¼ì„¸ìš”.";
 	        
 	        try {
 	            
@@ -155,18 +155,18 @@ public class MemberController {
 	        return num;
 		}
 		
-		 /* ·Î±×ÀÎ */
+		 /* ë¡œê·¸ì¸ */
 	    @RequestMapping(value="login.do", method=RequestMethod.POST)
 	    public String loginPost(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
 	        
-	        System.out.println("login ¸Ş¼­µå ÁøÀÔ");
-	        System.out.println("Àü´ŞµÈ µ¥ÀÌÅÍ : " + member);
+	        System.out.println("login ë©”ì„œë“œ ì§„ì…");
+	        System.out.println("ì „ë‹¬ëœ ë°ì´í„° : " + member);
 	        
-	      //È¸¿ø°¡ÀÔ ¼­ºñ½º ½ÇÇà(ºñ¹Ğ¹øÈ£ º¹È£È­¸¦ À§ÇØ ÁÖ¼®Ã³¸®) 
+	      //íšŒì›ê°€ì… ì„œë¹„ìŠ¤ ì‹¤í–‰(ë¹„ë°€ë²ˆí˜¸ ë³µí˜¸í™”ë¥¼ ìœ„í•´ ì£¼ì„ì²˜ë¦¬) 
 //	        HttpSession session = request.getSession();
 //	        MemberVO loginVO = memberService.memberLogin(member);
 //	        
-//	        if(loginVO == null) {                                // ÀÏÄ¡ÇÏÁö ¾Ê´Â ¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£ ÀÔ·Â °æ¿ì
+//	        if(loginVO == null) {                                // ì¼ì¹˜í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ ê²½ìš°
 //	            
 //	            int result = 0;
 //	            rttr.addFlashAttribute("result", result);
@@ -174,7 +174,7 @@ public class MemberController {
 //	            
 //	        }
 //	        
-//	        session.setAttribute("member", loginVO);             // ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£ °æ¿ì (·Î±×ÀÎ ¼º°ø)
+//	        session.setAttribute("member", loginVO);             // ì¼ì¹˜í•˜ëŠ” ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸ ê²½ìš° (ë¡œê·¸ì¸ ì„±ê³µ)
 	        
 	        HttpSession session =  request.getSession();
 	        
@@ -183,56 +183,56 @@ public class MemberController {
 	        
 	        MemberVO loginVO = memberService.memberLogin(member);
 	        
-	        if(loginVO != null) {            // ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ Á¸Àç½Ã
+	        if(loginVO != null) {            // ì¼ì¹˜í•˜ëŠ” ì•„ì´ë”” ì¡´ì¬ì‹œ
 	        	
-	        	 rawPw = member.getMemberPw();        // »ç¿ëÀÚ°¡ Á¦ÃâÇÑ ºñ¹Ğ¹øÈ£
-	             encodedPw = loginVO.getMemberPw();        // µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåÇÑ ÀÎÄÚµùµÈ ºñ¹Ğ¹øÈ£
+	        	 rawPw = member.getMemberPw();        // ì‚¬ìš©ìê°€ ì œì¶œí•œ ë¹„ë°€ë²ˆí˜¸
+	             encodedPw = loginVO.getMemberPw();        // ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥í•œ ì¸ì½”ë”©ëœ ë¹„ë°€ë²ˆí˜¸
 	             
-	             if(true == pwEncoder.matches(rawPw, encodedPw)) {        // ºñ¹Ğ¹øÈ£ ÀÏÄ¡¿©ºÎ ÆÇ´Ü
+	             if(true == pwEncoder.matches(rawPw, encodedPw)) {        // ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ì—¬ë¶€ íŒë‹¨
 	            	 
-	            	 loginVO.setMemberPw("");                    // ÀÎÄÚµùµÈ ºñ¹Ğ¹øÈ£ Á¤º¸ Áö¿ò
-	                 session.setAttribute("member", loginVO);     // session¿¡ »ç¿ëÀÚÀÇ Á¤º¸ ÀúÀå
-	                 return "redirect:/";        // ¸ŞÀÎÆäÀÌÁö ÀÌµ¿
+	            	 loginVO.setMemberPw("");                    // ì¸ì½”ë”©ëœ ë¹„ë°€ë²ˆí˜¸ ì •ë³´ ì§€ì›€
+	                 session.setAttribute("member", loginVO);     // sessionì— ì‚¬ìš©ìì˜ ì •ë³´ ì €ì¥
+	                 return "redirect:/";        // ë©”ì¸í˜ì´ì§€ ì´ë™
 	                 
 	             } else {
 	            	 
-	            	 rttr.addFlashAttribute("result", 0); //parameter ¼û±â±â
+	            	 rttr.addFlashAttribute("result", 0); //parameter ìˆ¨ê¸°ê¸°
 			         return "redirect:/member/login";
 			            	                 
 	             }
 	        	
 	            
-	        } else {                    // ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾ÊÀ» ½Ã (·Î±×ÀÎ ½ÇÆĞ)
+	        } else {                    // ì¼ì¹˜í•˜ëŠ” ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ ì‹œ (ë¡œê·¸ì¸ ì‹¤íŒ¨)
 	            
-	        	 rttr.addFlashAttribute("result", 0); //parameter ¼û±â±â
+	        	 rttr.addFlashAttribute("result", 0); //parameter ìˆ¨ê¸°ê¸°
 		         return "redirect:/member/login";           
       	
 	        }
 	        
 	       
 	    }
-	    /* ¸ŞÀÎÆäÀÌÁö ·Î±×¾Æ¿ô */
+	    /* ë©”ì¸í˜ì´ì§€ ë¡œê·¸ì•„ì›ƒ */
 	    @RequestMapping(value = "logout.do", method = RequestMethod.GET)
 	    public String logoutMainGet(HttpServletRequest request) throws Exception{
 	    	
-	    	logger.info("logoutMainGet µé¾î¿È");
+	    	logger.info("logoutMainGet ë“¤ì–´ì˜´");
 	    	
 	    	HttpSession session = request.getSession();
 	    	
-	    	 session.invalidate(); //¼¼¼ÇÀüÃ¼ ¹«È¿È­
-	    	 System.out.println("¼¼¼± ¹«È¿È­ ¿Ï·á"); 	 
+	    	 session.invalidate(); //ì„¸ì…˜ì „ì²´ ë¬´íš¨í™”
+	    	 System.out.println("ì„¸ì„  ë¬´íš¨í™” ì™„ë£Œ"); 	 
 	         
 	         return "redirect:/";
 	         
 	         
 	    }
 
-	    /* ºñµ¿±â¹æ½Ä ·Î±×¾Æ¿ô ¸Ş¼­µå */
+	    /* ë¹„ë™ê¸°ë°©ì‹ ë¡œê·¸ì•„ì›ƒ ë©”ì„œë“œ */
 	    @RequestMapping(value = "logout.do", method = RequestMethod.POST)
 	    @ResponseBody
 	    public void logoutPost(HttpServletRequest request) throws Exception{
 	    	
-	    	logger.info("ºñµ¿±â ·Î±×¾Æ¿ô¸Ş¼­µå ÁøÀÔ");
+	    	logger.info("ë¹„ë™ê¸° ë¡œê·¸ì•„ì›ƒë©”ì„œë“œ ì§„ì…");
 	    	
 	    	HttpSession session = request.getSession();
 	    	

@@ -13,50 +13,50 @@ import com.lwj.model.MemberVO;
 public class MemberMapperTest {
 	
 	@Autowired
-	private MemberMapper membermapper;			//MemberMapper.java ÀÎÅÍÆäÀÌ½º ÀÇÁ¸¼º ÁÖÀÔ
+	private MemberMapper membermapper;			//MemberMapper.java ì¸í„°í˜ì´ìŠ¤ ì˜ì¡´ì„± ì£¼ì…
 	
-//	//È¸¿ø°¡ÀÔ Äõ¸® Å×½ºÆ® ¸Ş¼­µå
+//	//íšŒì›ê°€ì… ì¿¼ë¦¬ í…ŒìŠ¤íŠ¸ ë©”ì„œë“œ
 //	@Test
 //	public void memberJoin() throws Exception{
 //		MemberVO member = new MemberVO();
 //		
-//		member.setMemberId("test");			//È¸¿ø id
-//		member.setMemberPw("test");			//È¸¿ø ºñ¹Ğ¹øÈ£
-//		member.setMemberName("test");		//È¸¿ø ÀÌ¸§
-//		member.setMemberMail("test");		//È¸¿ø ¸ŞÀÏ
-//		member.setMemberAddr1("test");		//È¸¿ø ¿ìÆí¹øÈ£
-//		member.setMemberAddr2("test");		//È¸¿ø ÁÖ¼Ò
-//		member.setMemberAddr3("test");		//È¸¿ø »ó¼¼ÁÖ¼Ò
+//		member.setMemberId("test");			//íšŒì› id
+//		member.setMemberPw("test");			//íšŒì› ë¹„ë°€ë²ˆí˜¸
+//		member.setMemberName("test");		//íšŒì› ì´ë¦„
+//		member.setMemberMail("test");		//íšŒì› ë©”ì¼
+//		member.setMemberAddr1("test");		//íšŒì› ìš°í¸ë²ˆí˜¸
+//		member.setMemberAddr2("test");		//íšŒì› ì£¼ì†Œ
+//		member.setMemberAddr3("test");		//íšŒì› ìƒì„¸ì£¼ì†Œ
 //		
-//		membermapper.memberJoin(member);			//Äõ¸® ¸Ş¼­µå ½ÇÇà
+//		membermapper.memberJoin(member);			//ì¿¼ë¦¬ ë©”ì„œë“œ ì‹¤í–‰
 //		
 //	}
 	
-	// ¾ÆÀÌµğ Áßº¹°Ë»ç
+	// ì•„ì´ë”” ì¤‘ë³µê²€ì‚¬
 		@Test
 		public void memberIdChk() throws Exception{
-			String id = "admin";	// Á¸ÀçÇÏ´Â ¾ÆÀÌµğ
-			String id2 = "test123";	// Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğ
+			String id = "admin";	// ì¡´ì¬í•˜ëŠ” ì•„ì´ë””
+			String id2 = "test123";	// ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””
 			membermapper.idCheck(id);
 			membermapper.idCheck(id2);
 		}
 		
-	//·Î±×ÀÎ Äõ¸® mapper Å×½ºÆ®
+	//ë¡œê·¸ì¸ ì¿¼ë¦¬ mapper í…ŒìŠ¤íŠ¸
 		@Test
 		public void memberLogin() throws Exception{
 			
 			MemberVO member =  new MemberVO();
 			
-			 /* ¿Ã¹Ù¸¥ ¾ÆÀÌµğ ºñ¹ø ÀÔ·Â°æ¿ì */
+			 /* ì˜¬ë°”ë¥¸ ì•„ì´ë”” ë¹„ë²ˆ ì…ë ¥ê²½ìš° */
 	        member.setMemberId("test");
 	        member.setMemberPw("test");
 	        
-	        /* ¿Ã¹Ù¸£Áö ¾ÊÀº ¾ÆÀÌµğ ºñ¹ø ÀÔ·Â°æ¿ì */
+	        /* ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì•„ì´ë”” ë¹„ë²ˆ ì…ë ¥ê²½ìš° */
 	        //member.setMemberId("test1123");
 	        //member.setMemberPw("test1321321");
 	        
 	        membermapper.memberLogin(member);
-	        System.out.println("°á°ú °ª : " + membermapper.memberLogin(member));
+	        System.out.println("ê²°ê³¼ ê°’ : " + membermapper.memberLogin(member));
 		}
 		
 		
