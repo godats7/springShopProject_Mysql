@@ -4,11 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.lwj.mapper.AuthorMapper">
   
-   <!-- 작가 등록 -->
+ 	  <!-- 작가 등록 -->
       <insert id="authorEnroll">
       
           insert into image_author(authorName, genreId, authorIntro) values(#{authorName}, #{genreId}, #{authorIntro} )
  
-      </insert>      
+      </insert>     
+      
+       <!-- 작가 목록 -->
+ 	   <select id="authorGetList" resultType="com.lwj.model.AuthorVO">
+    
+        select  authorid, authorname, genreid, regdate, updatedate
+        from image_author 
+        <if test="keyword != null">
+            where authorname like concat('%',#{keyword}, '%')
+        </if>
+        order by authorid desc 
+        limit #{skip}, #{amount}    
+    
+    </select> 
+    
+    <!-- 작가 수 -->
+      <select id="authorGetTotal" resultType="int">
+      
+          select count(*) from image_author
+          
+          <if test="keyword != null">
+          
+              where authorname like concat('%', #{keyword}, '%');
+          
+          </if>
+          
+      </select>
       
   </mapper>

@@ -63,7 +63,41 @@
                    				<button id="cancelBtn" class="btn">취 소</button>
 	                    		<button id="enrollBtn" class="btn enroll_btn">등 록</button>
 	                    	</div> 
-                    </div><!-- 작가등록  -->                    
+                    </div><!-- 작가등록  -->   
+                    
+                    <!-- 페이지 이동 인터페이스 영역 -->
+                    <div class="pageMaker_wrap" >
+                    
+	                    <ul class="pageMaker">
+	                    
+	                    	<!-- 이전 버튼 -->
+	                    	<c:if test="${pageMaker.prev}">
+	                    		<li class="pageMaker_btn prev">
+	                    			<a href="${pageMaker.pageStart - 1}">이전</a>
+	                    		</li>
+	                    	</c:if>
+	                    	
+	                    	<!-- 페이지 번호 -->
+	                    	<c:forEach begin="${pageMaker.pageStart}" end="${pageMaker.pageEnd}" var="num">
+	                    		<li class="pageMaker_btn ${pageMaker.criteria.pageNum == num ? "active":""}">
+	                    			<a href="${num}">${num}</a>
+	                    		</li>
+	                    	</c:forEach>
+	                    	
+	                    	<!-- 다음 버튼 -->
+	                    	<c:if test="${pageMaker.next}">
+	                    		<li class="pageMaker_btn next">
+	                    			<a href="${pageMaker.pageEnd + 1 }">다음</a>
+	                    		</li>
+	                    	</c:if>	                    	
+	                    </ul>	                    
+                    </div> 
+                    <form id="moveForm" action="/admin/authorManage" method="get">
+						<input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}">
+						<input type="hidden" name="amount" value="${pageMaker.criteria.amount}">
+						<input type="hidden" name="keyword" value="${pageMaker.criteria.keyword}">
+					</form>
+                                     
                 </div>
                 
                 <%@include file="../includes/admin/footer.jsp" %>
@@ -142,6 +176,19 @@ $(document).ready(function(){
         
     }
  
+});
+
+let moveForm = $('#moveForm');
+
+/* 페이지 이동 버튼 */
+$(".pageMaker_btn a").on("click", function(e){
+    
+    e.preventDefault();
+    
+    moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+    
+    moveForm.submit();
+    
 });
  
 </script> 

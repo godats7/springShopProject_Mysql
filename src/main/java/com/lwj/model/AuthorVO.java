@@ -47,6 +47,19 @@ public class AuthorVO {
 
 	public void setGenreId(String genreId) {
 		this.genreId = genreId;
+		if(genreId.equals("01")) {
+			this.genreName = "귀여운";
+		} else if(genreId.equals("02")) {
+			this.genreName = "신비로운";
+		} else if(genreId.equals("03")) {
+			this.genreName = "웅장한";
+		} else if(genreId.equals("04")) {
+			this.genreName = "무서운";
+		} else if(genreId.equals("05")) {
+			this.genreName = "자연의";
+		} else if(genreId.equals("06")) {
+			this.genreName = "우주의";
+		}
 	}
 
 	public String getGenreName() {

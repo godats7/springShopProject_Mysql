@@ -47,6 +47,8 @@
         
         /* alert("로그인 버튼 작동"); */
         
+        console.log("login in")
+        
         /* 로그인 메서드 서버 요청 */
         $("#login_form").attr("action", "/member/login.do");
         $("#login_form").submit();

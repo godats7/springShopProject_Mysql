@@ -15,93 +15,46 @@
 </head>
 <body>
  
-    <div class="wrapper">
-        <div class="wrap">
-            <!-- gnv_area -->    
-            <div class="top_gnb_area">
-                <ul class="list">    
-                    <li><a href="/">메인 페이지</a></li>
-                    <li><a href="/member/logout.do">로그아웃</a></li>
-                    <li>고객센터</li>            
-                </ul>
-            </div>
-            <!-- top_subject_area -->
-            <div class="admin_top_wrap">
-                <span>관리자 페이지</span>
-                
-            </div>
-            <!-- contents-area -->
-            <div class="admin_wrap">
-                <!-- 네비영역 -->
-                <div class="admin_navi_wrap">
-                  <ul>
-                        <li >
-                            <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
-                        </li>
-                        <li>
-                            <a class="admin_list_02" href="/admin/goodsManage">상품 목록</a>
-                        </li>
-                        <lI>
-                            <a class="admin_list_03" href="/admin/authorEnroll">작가 등록</a>                            
-                        </lI>
-                        <lI>
-                            <a class="admin_list_04" href="/admin/authorManage">작가 관리</a>                            
-                        </lI>
-                        <lI>
-                            <a class="admin_list_05" href="">장르 관리</a>                            
-                        </lI>
-                        <lI>	
-                            <a class="admin_list_06">회원 관리</a>                            
-                        </lI>                                                                                             
-                    </ul>
-                </div>
+   			<%@include file="../includes/admin/header.jsp" %>
+   
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 관리</span></div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-        
-        
-        <!-- Footer 영역 -->
-        <div class="footer_nav">
-            <div class="footer_nav_container">
-                <ul>
-                    <li>회사소개</li>
-                    <span class="line">|</span>
-                    <li>이용약관</li>
-                    <span class="line">|</span>
-                    <li>고객센터</li>
-                    <span class="line">|</span>
-                    <li>광고문의</li>
-                    <span class="line">|</span>
-                    <li>채용정보</li>
-                    <span class="line">|</span>
-                </ul>
-            </div>
-        </div> <!-- class="footer_nav" -->
-        
-       <div class="footer">
-            <div class="footer_container">
                 
-                <div class="footer_left">
-                    <img src="../resources/img/Logo.png">
-                </div>
-                <div class="footer_right">
-                    (주) wookdolman    owner : Lee wookjong
-                    <br>
-                    business number : 123-456-7890
-                    <br>
-                    Tel. : 02-1234-5678(발신자 부담전화)
-                    <br>
-                    <br>
-                    COPYRIGHT(C) <strong>wookdolman co.</strong>    ALL RIGHTS RESERVED.
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div> <!-- class="footer" -->    
-        
-    </div>    <!-- class="wrap" -->
-</div>    <!-- class="wrapper" -->
- 
+                <!-- 페이지 이동 인터페이스 영역 -->
+                    <div class="pageMaker_wrap" >
+                    
+	                    <ul class="pageMaker">
+	                    
+	                    	<!-- 이전 버튼 -->
+	                    	<c:if test="${pageMaker.prev}">
+	                    		<li class="pageMaker_btn prev">
+	                    			<a href="${pageMaker.pageStart - 1}">이전</a>
+	                    		</li>
+	                    	</c:if>
+	                    	
+	                    	<!-- 페이지 번호 -->
+	                    	<c:forEach begin="${pageMaker.pageStart}" end="${pageMaker.pageEnd}" var="num">
+	                    		<li class="pageMaker_btn ${pageMaker.criteria.pageNum == num ? "active":""}">
+	                    			<a href="${num}">${num}</a>
+	                    		</li>
+	                    	</c:forEach>
+	                    	
+	                    	<!-- 다음 버튼 -->
+	                    	<c:if test="${pageMaker.next}">
+	                    		<li class="pageMaker_btn next">
+	                    			<a href="${pageMaker.pageEnd + 1 }">다음</a>
+	                    		</li>
+	                    	</c:if>	                    	
+	                    </ul>	                    
+                    </div> 
+                    <form id="moveForm" action="/admin/authorManage" method="get">
+						<input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}">
+						<input type="hidden" name="amount" value="${pageMaker.criteria.amount}">
+						<input type="hidden" name="keyword" value="${pageMaker.criteria.keyword}">
+					</form>
+                
+                
+           <%@include file="../includes/admin/footer.jsp" %>
 </body>
 </html>
