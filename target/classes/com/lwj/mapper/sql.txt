@@ -28,3 +28,92 @@ insert into image_author(authorName, genreId, authorIntro) values('스펙타클'
 
 재귀복사(행 추가)
 insert into image_author(authorname, genreid)(select authorname, genreid from image_author);
+
+상품테이블(이미지)
+create table goods_image(
+    imageId int primary key auto_increment,
+    imageName varchar(50)   not null,
+    authorId int,
+    publeYear Date not null,
+    publisher varchar(70) not null,
+    catCode varchar(30),
+    imagePrice int not null,
+    imageStock int not null,
+    imageDiscount decimal(2,2),
+    imageIntro text,
+    imageContents text,
+    regDate timestamp default now(),
+    updateDate timestamp default now()
+);
+
+상품카테고리
+create table goods_img_cat(
+    tier int(1) not null,
+    catName varchar(30) not null,
+    catCode varchar(30) not null,
+    catParent varchar(30) ,
+    primary key(catCode),
+    foreign key(catParent) references goods_img_cat(catCode) 
+);
+
+
+-- 데이터 삽입
+		insert into goods_img_cat(tier, catName, catCode) values (1, '귀여운', '100000');
+		
+    	insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '동물', '101000','100000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '개', '101001','101000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '고양이', '101002','101000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '말', '101003','101000');
+        
+    	insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '사람', '102000','100000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '남자', '102001','102000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '여자', '102002','102000');   
+         
+	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '경제/경영', '103000','100000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경영일반', '103001','103000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경영이론', '103002','103000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경제일반', '103003','103000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경제이론', '103004','103000');  
+          
+  		insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '자기계발', '104000','100000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '성공/처세', '104001','104000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '자기능력계발', '104002','104000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '인간관계', '104003','104000');   
+         
+ 	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '인문', '105000','100000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '심리학', '105001','105000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '교육학', '105002','105000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '철학', '105003','105000');    
+        
+   	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '역사/문화', '106000','100000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '역사일반', '106001','106000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '세계사', '106002','106000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '한국사', '106003','106000');
+        
+	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '과학', '107000','100000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '과학이론', '107001','107000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '수학', '107002','107000');
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '물리학', '107003','107000');
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        
+		insert into goods_img_cat(tier, catName, catCode) values (1, '국외', '200000');
+		
+  		insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '문학', '201000','200000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '소설', '201001','201000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '시', '201002','201000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '희곡', '201003','201000');  
+          
+	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '인문/사회', '202000','200000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '교양', '202001','202000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '철학', '202002','202000');    
+        
+	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '경제/경영', '203000','200000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경제학', '203001','203000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '경영학', '203002','203000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '투자', '203003','203000');   
+         
+	    insert into goods_img_cat(tier, catName, catCode, catParent) values (2, '과학/기술', '204000','200000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '교양과학', '204001','204000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '물리학', '204002','204000');    
+        insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '수학', '204003','204000');  

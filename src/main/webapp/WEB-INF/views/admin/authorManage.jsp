@@ -38,7 +38,11 @@
                     		<c:forEach items="${list}" var="list">
                     		<tr>
                     			<td><c:out value="${list.authorId}"></c:out> </td>
-                    			<td><c:out value="${list.authorName}"></c:out></td>
+                    			<td>
+                    				<a class="move" href='<c:out value="${list.authorId}"/>'>
+										<c:out value="${list.authorName}"></c:out>
+									</a>                     			
+                    			</td>
                     			<td><c:out value="${list.genreName}"></c:out> </td>
                     			<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd"/></td>
                     			<td><fmt:formatDate value="${list.updateDate}" pattern="yyyy-MM-dd"/></td>
@@ -110,22 +114,22 @@
 let moveForm = $('#moveForm');
 let searchForm = $('#searchForm'); 
 
-/* 페이지 이동 버튼 */
-$(".pageMaker_btn a").on("click", function(e){
-	
-	 console.log("page move in")
-    
-    e.preventDefault();
-	 
-	 console.log("page move prevent")
-    
-    moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-	/* moveForm.attr("action", "/admin/list")  */
-    
-    moveForm.submit();
-    
-    console.log("page move success")
-});
+	/* 페이지 이동 버튼 */
+	$(".pageMaker_btn a").on("click", function(e){
+		
+		 console.log("page move in")
+	    
+	    e.preventDefault();
+		 
+		 console.log("page move prevent")
+	    
+	    moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		/* moveForm.attr("action", "/admin/list")  */
+	    
+	    moveForm.submit();
+	    
+	    console.log("page move success")
+	});
     
     
 	
@@ -146,6 +150,16 @@ $(".pageMaker_btn a").on("click", function(e){
 		
 	});
 
+	/* 작가 상세 페이지 이동 */
+	$(".move").on("click", function(e){
+		
+		e.preventDefault();
+		
+		moveForm.append("<input type='hidden' name='authorId' value='"+ $(this).attr("href") + "'>");
+		moveForm.attr("action", "/admin/authorDetail");
+		moveForm.submit();
+		
+	});
 
 </script>
  

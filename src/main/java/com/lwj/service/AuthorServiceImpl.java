@@ -46,6 +46,25 @@ public class AuthorServiceImpl implements AuthorService{
 		log.info("(service)authorGetTotalList........"+criteria);
 		return authorMapper.authorGetTotal(criteria);
 	}
+
+	//  작가 상세
+	@Override
+	public AuthorVO authorGetDetail(int authorId) throws Exception {
+		// TODO Auto-generated method stub
+		log.info("authorGetDetail........" + authorId);
+		return authorMapper.authorGetDetail(authorId);
+	}
+
+	// 작가정보 수정
+	@Override
+	public int authorModify(AuthorVO author) throws Exception {
+		// TODO Auto-generated method stub
+		log.info("(service) authorModify........." + author);
+		return authorMapper.authorModify(author);
+	}
+	
+	
+	
 	
 	
 	

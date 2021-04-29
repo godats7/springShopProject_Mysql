@@ -127,6 +127,12 @@ ul{
 	background-color: #f8f9fd;	
 	font-weight: 600;
 }
+
+.author_table a{
+	color:#1088ed;
+	font-weight: 500;
+}
+
 .th_column_1{
 	width:120px;
 }

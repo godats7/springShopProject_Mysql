@@ -15,4 +15,10 @@ public interface AuthorService {
     
     /* 작가 총 수 */
     public int authorGetTotal(Criteria criteria) throws Exception;
+    
+	/* 작가상세 */
+    public AuthorVO authorGetDetail(int authorId) throws Exception;
+    
+	/* 작가정보수정 */
+    public int authorModify(AuthorVO author) throws Exception;
 }
