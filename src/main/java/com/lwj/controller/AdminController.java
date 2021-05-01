@@ -16,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lwj.model.AuthorVO;
 import com.lwj.model.Criteria;
+import com.lwj.model.ImageVO;
 import com.lwj.model.PageDTO;
+import com.lwj.service.AdminService;
 import com.lwj.service.AuthorService;
 
 @Controller
@@ -27,6 +29,11 @@ public class AdminController {
 	
 	@Autowired
 	private AuthorService authorService;
+	
+	@Autowired
+	private AdminService adminService;
+		
+	
 	
 	/* 메인페이지 이동 */
 	@RequestMapping(value = "main", method = RequestMethod.GET)
@@ -103,6 +110,7 @@ public class AdminController {
 		
 	}
 	
+	/* 작가 수정 */
 	@PostMapping("/authorModify")
 	public String authorModifyPost(AuthorVO author, RedirectAttributes rttr) throws Exception{
 		
@@ -115,5 +123,22 @@ public class AdminController {
 		return "redirect:/admin/authorManage";
 		
 	}
+	
+	@PostMapping("/imageEnroll")
+	public String imageEnrollPost(ImageVO image, RedirectAttributes rttr) {
+
+		logger.info("imageEnrollPost..........  " + image);
 		
+		adminService.imageEnroll(image);
+		rttr.addFlashAttribute("enroll_result", image.getImageName());
+				
+		return "redirect:/admin/goodsManage";
+	}
+		
+	@GetMapping("authorPop")
+	public void authorPopGet() throws Exception{
+		
+		logger.info("authorPopGET.......");
+		
+	}
 }

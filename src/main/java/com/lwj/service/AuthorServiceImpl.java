@@ -11,7 +11,10 @@ import com.lwj.mapper.AuthorMapper;
 import com.lwj.model.AuthorVO;
 import com.lwj.model.Criteria;
 
+import lombok.extern.log4j.Log4j;
+
 @Service
+@Log4j
 public class AuthorServiceImpl implements AuthorService{
 	
 	private static final Logger log = LoggerFactory.getLogger(AuthorServiceImpl.class);
