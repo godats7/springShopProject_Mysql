@@ -124,6 +124,7 @@ public class AdminController {
 		
 	}
 	
+	/* 상품(이미지 등록) */
 	@PostMapping("/imageEnroll")
 	public String imageEnrollPost(ImageVO image, RedirectAttributes rttr) {
 
@@ -134,11 +135,27 @@ public class AdminController {
 				
 		return "redirect:/admin/goodsManage";
 	}
-		
+
+	/* 작가검색윈도우팝업 */
 	@GetMapping("authorPop")
-	public void authorPopGet() throws Exception{
+	public void authorPopGet(Criteria criteria, Model model) throws Exception{
 		
 		logger.info("authorPopGET.......");
+		
+		criteria.setAmount(5);
+		
+		/* 게시물 출력 데이터 */
+		List list = authorService.authorGetList(criteria);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list",list);	// 작가 존재 경우
+		} else {
+			model.addAttribute("listCheck", "empty");	// 작가 존재하지 않을 경우
+		}
+		
+		
+		/* 페이지 이동 인터페이스 데이터 */
+		model.addAttribute("pageMaker", new PageDTO(criteria, authorService.authorGetTotal(criteria)));
 		
 	}
 }
