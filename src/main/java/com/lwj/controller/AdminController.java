@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lwj.model.AuthorVO;
 import com.lwj.model.Criteria;
 import com.lwj.model.ImageVO;
@@ -50,8 +51,19 @@ public class AdminController {
 	
 	/* 상품 등록 이동 */
 	@RequestMapping(value = "goodsEnroll", method = RequestMethod.GET)
-	public void goodsEnrollGet() throws Exception{
+	public void goodsEnrollGet(Model model) throws Exception{
 		  logger.info("상품 등록 이동");
+		  
+		  ObjectMapper objm = new ObjectMapper();
+		/* 카테고리 리스트 데이터 반환 */
+		  List list = adminService.catList();
+		  
+		  String catList =objm.writeValueAsString(list);
+		  
+		  model.addAttribute("catList",catList);
+		  
+		  logger.info("변경 전.........." + list);
+          logger.info("변경 후.........." + catList);
 	}
 	
 	/* 작가 관리 이동*/
@@ -158,4 +170,6 @@ public class AdminController {
 		model.addAttribute("pageMaker", new PageDTO(criteria, authorService.authorGetTotal(criteria)));
 		
 	}
+	
+	
 }

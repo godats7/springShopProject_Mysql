@@ -1,11 +1,14 @@
 package com.lwj.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lwj.mapper.AdminMapper;
+import com.lwj.model.CategoryVO;
 import com.lwj.model.ImageVO;
 
 import jdk.internal.jline.internal.Log;
@@ -29,6 +32,17 @@ public class AdminServiceImpl implements AdminService{
 		adminMapper.imageEnroll(image);
 		
 	}
+
+	@Override
+	public List<CategoryVO> catList() {
+		// TODO Auto-generated method stub
+		
+		log.info("(service)catList........");
+		
+		return adminMapper.catList();
+	}
+	
+	
 	
 	
 

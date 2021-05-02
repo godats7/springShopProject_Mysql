@@ -138,5 +138,7 @@ create table goods_img_cat(
         insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '은하수', '602002','602000');    
         
 	    
-         
+-- 외래키 추가
+alter table goods_image add foreign key (authorId) references image_author(authorId);
+alter table goods_image add foreign key (cateCode) references goods_img_cat(catCode); 
 	  

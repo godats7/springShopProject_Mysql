@@ -11,5 +11,12 @@
 		values(#{imageName},#{authorId}, #{publeYear},#{publisher},#{catCode},#{imagePrice},#{imageStock},#{imageDiscount},#{imageIntro},#{imageContents})
 
   	</insert>
+  	
+  	<!-- 카테고리 리스트 -->
+  	<select id="catList" resultType="com.lwj.model.CategoryVO">
+  	
+  		select * from goods_img_cat order by catcode
+  	
+  	</select>
   
   </mapper>

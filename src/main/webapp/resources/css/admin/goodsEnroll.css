@@ -155,6 +155,20 @@ ul{
     text-align: center;
 }
 
+.form_section_content select {		/* 카테고리 css 설정 */
+    width: 92%;
+    height: 35px;
+    font-size: 20px;
+    text-align-last: center;
+    margin-left: 5px;
+}
+.cat_wrap span {
+    font-weight: 600;
+}
+.cat_wrap:not(:first-child) {
+    margin-top: 20px;
+}
+
 /* 버튼 영역 */
 .btn_section{
 	text-align: center;
@@ -292,4 +306,21 @@ ul{
 input[name='publeYear'] {
     width: 80%;
     text-align: center;
+}
+
+.ck_warn{						/* 입력란 공란 경고 태그 */
+	display: none;
+    padding-top: 10px;
+    text-align: center;
+    color: #e05757;
+    font-weight: 300;    
+}
+
+.step_val{						/* 할인 가격 문구 */
+	display: block;
+    padding-top: 5px;
+    font-weight: 500;
+}
+.span_discount{
+	font-size: 22px;
 }
