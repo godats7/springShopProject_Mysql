@@ -138,7 +138,60 @@ create table goods_img_cat(
         insert into goods_img_cat(tier, catName, catCode, catParent) values (3, '은하수', '602002','602000');    
         
 	    
--- 외래키 추가
+////외래키 추가/////
+
+인덱스 추가
+ALTER TABLE `springproject`.`goods_image` 
+ADD INDEX `goods_image_idx01` (`authorId` ASC) VISIBLE,
+ADD INDEX `goods_image_idx02` (`catCode` ASC) VISIBLE;
+;
+
+ALTER TABLE `springproject`.`goods_image` 
+ADD CONSTRAINT `goods_image_gifk01`
+  FOREIGN KEY (`authorId`)
+  REFERENCES `springproject`.`image_author` (`authorId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `goods_image_gifk02`
+  FOREIGN KEY (`catCode`)
+  REFERENCES `springproject`.`goods_img_cat` (`catCode`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+/////////////////////////error/////////////////
+Operation failed: There was an error while applying the SQL script to the database.
+Executing:
+ALTER TABLE `springproject`.`goods_image` 
+ADD CONSTRAINT `goods_image_gifk01`
+  FOREIGN KEY (`authorId`)
+  REFERENCES `springproject`.`image_author` (`authorId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `goods_image_gifk02`
+  FOREIGN KEY (`catCode`)
+  REFERENCES `springproject`.`goods_img_cat` (`catCode`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+ERROR 1452: Cannot add or update a child row: a foreign key constraint fails (`springproject`.`#sql-1778_338`, CONSTRAINT `goods_image_gifk01` FOREIGN KEY (`authorId`) REFERENCES `image_author` (`authorId`))
+SQL Statement:
+ALTER TABLE `springproject`.`goods_image` 
+ADD CONSTRAINT `goods_image_gifk01`
+  FOREIGN KEY (`authorId`)
+  REFERENCES `springproject`.`image_author` (`authorId`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `goods_image_gifk02`
+  FOREIGN KEY (`catCode`)
+  REFERENCES `springproject`.`goods_img_cat` (`catCode`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+///////////////////////////////////////////
+
+
+
+
+
 alter table goods_image add foreign key (authorId) references image_author(authorId);
-alter table goods_image add foreign key (cateCode) references goods_img_cat(catCode); 
+alter table goods_image add foreign key (catCode) references goods_img_cat(catCode); 
 	  

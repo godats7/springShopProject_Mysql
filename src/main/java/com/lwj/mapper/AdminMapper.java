@@ -3,6 +3,7 @@ package com.lwj.mapper;
 import java.util.List;
 
 import com.lwj.model.CategoryVO;
+import com.lwj.model.Criteria;
 import com.lwj.model.ImageVO;
 
 public interface AdminMapper {
@@ -12,4 +13,13 @@ public interface AdminMapper {
 	
 	/* 카테고리 리스트 */
 	public List<CategoryVO> catList();
+	
+	/* 상품 리스트 */
+	public List<ImageVO> goodsGetList(Criteria criteria);
+	
+	/* 상품 총 개수 */
+	public int goodsGetTotal(Criteria criteria);
+	
+	/* 상품 조회 페이지 */
+	public ImageVO goodsGetDetail(int imageId);
 }

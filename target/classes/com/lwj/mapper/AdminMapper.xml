@@ -18,5 +18,42 @@
   		select * from goods_img_cat order by catcode
   	
   	</select>
+  	
+  	<!-- 상품 리스트 -->
+	<select id="goodsGetList" resultType="com.lwj.model.ImageVO">
+	
+		select  imageId, imageName,  b.authorName, c.catName, imageStock, a.regDate
+		from goods_image a 
+		left outer join image_author b on a.authorId = b.authorId
+		left outer join goods_img_cat c on a.catCode = c.catCode
+		<if test="keyword != null">
+			where (imageName like concat ('%', #{keyword}, '%'))
+		</if>
+		order by imageId desc 
+		limit #{skip}, #{amount}		
+	
+	</select>
+  	
+  	<!-- 상품 총 갯수 -->
+  	<select id="goodsGetTotal" resultType="int">
+  	
+  		select count(*) from goods_image
+  		
+  		<if test="keyword != null">
+  		
+  			where imageName like concat('%' , #{keyword}, '%')
+  		
+  		</if>
+  	
+  	</select>
+  	
+  	<!-- 상품 조회 페이지 -->
+	<select id="goodsGetDetail" resultType="com.lwj.model.ImageVO">
+	
+		select imageId, imageName, (select authorName from image_author where authorId =goods_image.authorId) authorName, 
+			authorId, publeYear, publisher, catCode, imagePrice, imageStock, imageDiscount, imageIntro, imageContents, regDate, updateDate 
+		from goods_image where imageId = #{imageId}
+	
+	</select>
   
   </mapper>

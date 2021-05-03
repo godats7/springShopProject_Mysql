@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lwj.model.AuthorVO;
 import com.lwj.model.Criteria;
@@ -45,8 +46,21 @@ public class AdminController {
 
 	/* 상품 관리 이동 */
 	@RequestMapping(value = "goodsManage", method = RequestMethod.GET)
-	public void goodsManageGet() throws Exception{
+	public void goodsManageGet(Criteria criteria, Model model) throws Exception{
 		 logger.info("상품관리 이동");
+		 
+		 /* 상품 리스트 데이터 */
+			List list = adminService.goodsGetList(criteria);
+			
+			if(!list.isEmpty()) {
+				model.addAttribute("list", list);
+			} else {
+				model.addAttribute("listCheck", "empty");
+				return;
+			}
+			
+			/* 페이지 인터페이스 데이터 */
+			model.addAttribute("pageMaker", new PageDTO(criteria, adminService.goodsGetTotal(criteria)));
 	}
 	
 	/* 상품 등록 이동 */
@@ -170,6 +184,26 @@ public class AdminController {
 		model.addAttribute("pageMaker", new PageDTO(criteria, authorService.authorGetTotal(criteria)));
 		
 	}
+	
+	/* 상품 조회 페이지 */
+	@GetMapping("/goodsDetail")
+	public void goodsGetInfoGET(int imageId, Criteria criteria, Model model) throws JsonProcessingException {
+		
+		logger.info("goodsGetInfo()........." + imageId);
+		ObjectMapper mapper = new ObjectMapper();
+		
+		/* 카테고리 리스트 데이터 */
+		model.addAttribute("catList", mapper.writeValueAsString(adminService.catList()));
+		
+		/* 목록 페이지 조건 정보 */
+		model.addAttribute("criteria", criteria);
+		
+		/* 조회 페이지 정보 */
+		model.addAttribute("goodsInfo", adminService.goodsGetDetail(imageId));
+		
+	}
+	
+	
 	
 	
 }
