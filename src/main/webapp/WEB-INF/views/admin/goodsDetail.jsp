@@ -139,15 +139,15 @@
                    		
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">상품 목록</button>
-	                    		<button id="enrollBtn" class="btn enroll_btn">수정 </button>
+	                    		<button id="modifyBtn" class="btn enroll_btn">수정 </button>
 	                    	</div> 
                     </div>      
 
                 	
                 	<form id="moveForm" action="/admin/goodsManage" method="get" >
- 						<input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}">
-						<input type="hidden" name="amount" value="${pageMaker.criteria.amount}">
-						<input type="hidden" name="keyword" value="${pageMaker.criteria.keyword}">
+ 						<input type="hidden" name="pageNum" value="${criteria.pageNum}">
+						<input type="hidden" name="amount" value="${criteria.amount}">
+						<input type="hidden" name="keyword" value="${criteria.keyword}">
                 	</form>
                 	
                 </div>
@@ -275,6 +275,21 @@ $(document).ready(function(){
 		if(targetCat2.catParent === obj.value){
 			$(obj).attr("selected", "selected");
 		}
+	});
+	
+	/* 목록 이동 버튼 */
+	$("#cancelBtn").on("click", function(e){
+		e.preventDefault();
+		$("#moveForm").submit();	
+	});	
+	
+	/* 수정 페이지 이동 */
+	$("#modifyBtn").on("click", function(e){
+		e.preventDefault();
+		let addInput = '<input type="hidden" name="imageId" value="${goodsInfo.imageId}">';
+		$("#moveForm").append(addInput);
+		$("#moveForm").attr("action", "/admin/goodsModify");
+		$("#moveForm").submit();
 	});
 	
 	

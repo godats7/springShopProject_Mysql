@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsEnroll.css">
+<link rel="stylesheet" href="../resources/css/admin/goodsManage.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"

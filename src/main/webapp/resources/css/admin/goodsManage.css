@@ -119,6 +119,7 @@ ul{
     border: 1px solid #d3d8e1;
     text-align: center;
     border-collapse: collapse;
+    
 }
 .goods_table td{
 	padding: 10px 5px;
@@ -186,7 +187,8 @@ ul{
 .pageMaker_btn a:link {color: black;}
 .pageMaker_btn a:visited {color: black;}
 .pageMaker_btn a:active {color: black;}
-.pageMaker_btn a:hover {color: black;}
+.pageMaker_btn a:hover {color: black;}	
+
 .next a, .prev a {
     color: #ccc;
 }
