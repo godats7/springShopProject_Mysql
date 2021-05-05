@@ -70,15 +70,37 @@ public class AdminMapperTest {
 
 	
 	/* 상품 조회 페이지 */
+//	@Test
+//	public void goodsGetDetailTest() {
+//		
+//		int imageId = 1;
+//		
+//		ImageVO result = mapper.goodsGetDetail(imageId);
+//		
+//		System.out.println("상품 조회 데이터 : " + result);
+//		
+//		
+//	}
+	
+	/* 상품 정보 수정 */
 	@Test
-	public void goodsGetDetailTest() {
+	public void goodsModifyTest() {
 		
-		int imageId = 1;
+		ImageVO image = new ImageVO();
 		
-		ImageVO result = mapper.goodsGetDetail(imageId);
+		image.setImageId(1);
+		image.setImageName("mapper 테스트");
+		image.setAuthorId(1);
+		image.setPubleYear("2021-03-18");
+		image.setPublisher("출판사");
+		image.setCatCode("103002");
+		image.setImagePrice(20000);
+		image.setImageStock(300);
+		image.setImageDiscount(0.23);
+		image.setImageIntro("책 소개 ");
+		image.setImageContents("책 목차 ");
 		
-		System.out.println("상품 조회 데이터 : " + result);
-		
+		mapper.goodsModify(image);
 		
 	}
 }

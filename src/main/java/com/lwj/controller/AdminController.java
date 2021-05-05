@@ -203,6 +203,20 @@ public class AdminController {
 		
 	}
 	
+	/* 상품 정보 수정 */
+	@PostMapping("/goodsModify")
+	public String goodsModifyPOST(ImageVO image, RedirectAttributes rttr) {
+		
+		logger.info("goodsModifyPOST.........." + image);
+		
+		int result = adminService.goodsModify(image);
+		
+		rttr.addFlashAttribute("modify_result", result);
+		
+		return "redirect:/admin/goodsManage";		
+		
+	}
+	
 	
 	
 	

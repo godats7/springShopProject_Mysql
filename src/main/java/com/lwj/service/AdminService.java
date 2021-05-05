@@ -22,4 +22,7 @@ public interface AdminService {
 	
 	/* 상품 조회 페이지 */
 	public ImageVO goodsGetDetail(int imageId);	
+	
+	/* 상품 수정 */
+	public int goodsModify(ImageVO image);
 }

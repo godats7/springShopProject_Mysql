@@ -55,5 +55,14 @@
 		from goods_image where imageId = #{imageId}
 	
 	</select>
+		 
+	<!-- 상품 정보 수정 -->
+	<update id="goodsModify">
+		
+		update goods_image set imageName = #{imageName}, authorId = #{authorId}, publeYear = #{publeYear}, publisher = #{publisher}, catCode = ${catCode}, 
+		imagePrice = #{imagePrice}, imageStock = #{imageStock}, imageDiscount = #{imageDiscount}, imageIntro = #{imageIntro}, imageContents = #{imageContents}, updateDate = now()
+		where imageId = ${imageId}
+		
+	</update>
   
   </mapper>
