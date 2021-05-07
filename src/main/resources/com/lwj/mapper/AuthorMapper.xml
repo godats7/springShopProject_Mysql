@@ -49,5 +49,11 @@
 	
 	</update>
   	
+  	<!-- 작가 정보 삭제 -->
+  	<delete id="authorDelete">
+  	
+  		delete from image_author where authorId = #{authorId}
+  	
+  	</delete>
       
   </mapper>

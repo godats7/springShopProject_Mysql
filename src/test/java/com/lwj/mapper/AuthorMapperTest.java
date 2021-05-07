@@ -71,20 +71,35 @@ public class AuthorMapperTest {
 //	}
  
 	/* 작가 정보 수정 */
+//	@Test
+//	public void authorModifyTest() {
+//		
+//		AuthorVO author = new AuthorVO();
+//				
+//		author.setAuthorId(1);
+//		System.out.println("수정 전...................." + mapper.authorGetDetail(author.getAuthorId()));
+//		
+//		author.setAuthorName("수정");
+//		author.setGenreId("01");
+//		author.setAuthorIntro("소개 수정 하였습니다.");
+//		
+//		mapper.authorModify(author);
+//		System.out.println("수정 후...................." + mapper.authorGetDetail(author.getAuthorId()));
+//		
+//	}
+	
+	/* 작가 정보 삭제 */
 	@Test
-	public void authorModifyTest() {
+	public void authorDeleteTest() {
 		
-		AuthorVO author = new AuthorVO();
-				
-		author.setAuthorId(1);
-		System.out.println("수정 전...................." + mapper.authorGetDetail(author.getAuthorId()));
 		
-		author.setAuthorName("수정");
-		author.setGenreId("01");
-		author.setAuthorIntro("소개 수정 하였습니다.");
+		int authorId = 129;
 		
-		mapper.authorModify(author);
-		System.out.println("수정 후...................." + mapper.authorGetDetail(author.getAuthorId()));
+		int result = mapper.authorDelete(authorId);
+		
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}
 		
 	}
 	

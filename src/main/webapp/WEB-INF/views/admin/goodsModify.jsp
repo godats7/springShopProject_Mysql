@@ -140,6 +140,7 @@
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">취 소</button>
 	                    		<button id="modifyBtn" class="btn modify_btn">수 정</button>
+	                    		<button id="deleteBtn" class="btn delete_btn">삭 제</button>
 	                    	</div> 
                     </div>  
                 	<form id="moveForm" action="/admin/goodsManage" method="get" >
@@ -559,6 +560,16 @@ $(document).ready(function(){ /*  페이지가 렌더링 후 반드시 실행을
 		
 	});
 
+	/* 삭제 버튼 */
+	$("#deleteBtn").on("click", function(e){
+		e.preventDefault();
+		let moveForm = $("#moveForm");
+		moveForm.find("input").remove();
+		moveForm.append('<input type="hidden" name="imageId" value="${goodsInfo.imageId}">');
+		moveForm.attr("action", "/admin/goodsDelete");
+		moveForm.attr("method", "post");
+		moveForm.submit();
+	});
 	
 
 </script>

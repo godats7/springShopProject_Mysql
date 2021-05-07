@@ -25,4 +25,9 @@ public interface AdminMapper {
 	
 	/* 상품 수정 */
 	public int goodsModify(ImageVO image);
+	
+	/* 상품 정보 삭제 */
+	public int goodsDelete(int imageId);
+	
+	
 }

@@ -71,6 +71,14 @@ public class AdminServiceImpl implements AdminService{
 		log.info("goodsModify........");		
 		return adminMapper.goodsModify(image);
 	}
+
+	@Override
+	public int goodsDelete(int imageId) {
+		// TODO Auto-generated method stub
+		log.info("goodsDelete........");
+		return adminMapper.goodsDelete(imageId);
+	}
+	
 	
 	
 	

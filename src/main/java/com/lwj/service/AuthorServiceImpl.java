@@ -65,6 +65,16 @@ public class AuthorServiceImpl implements AuthorService{
 		log.info("(service) authorModify........." + author);
 		return authorMapper.authorModify(author);
 	}
+
+	//작가정보삭제
+	@Override
+	public int authorDelete(int authorId) throws Exception {
+		// TODO Auto-generated method stub
+		log.info("author deleted................" + authorId);
+		return authorMapper.authorDelete(authorId);
+	}
+	
+	
 	
 	
 	

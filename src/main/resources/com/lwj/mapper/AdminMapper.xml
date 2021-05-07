@@ -64,5 +64,12 @@
 		where imageId = ${imageId}
 		
 	</update>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="goodsDelete">
+	
+		delete from goods_image where imageId = #{imageId}
+	
+	</delete>
   
   </mapper>

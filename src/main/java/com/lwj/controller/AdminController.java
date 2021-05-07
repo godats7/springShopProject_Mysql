@@ -187,7 +187,7 @@ public class AdminController {
 	
 	/* 상품 조회 페이지 */
 	@GetMapping({"/goodsDetail", "/goodsModify"})
-	public void goodsGetInfoGET(int imageId, Criteria criteria, Model model) throws JsonProcessingException {
+	public void goodsGetInfoGet(int imageId, Criteria criteria, Model model) throws JsonProcessingException {
 		
 		logger.info("goodsGetInfo()........." + imageId);
 		ObjectMapper mapper = new ObjectMapper();
@@ -205,7 +205,7 @@ public class AdminController {
 	
 	/* 상품 정보 수정 */
 	@PostMapping("/goodsModify")
-	public String goodsModifyPOST(ImageVO image, RedirectAttributes rttr) {
+	public String goodsModifyPost(ImageVO image, RedirectAttributes rttr) {
 		
 		logger.info("goodsModifyPOST.........." + image);
 		
@@ -214,6 +214,46 @@ public class AdminController {
 		rttr.addFlashAttribute("modify_result", result);
 		
 		return "redirect:/admin/goodsManage";		
+		
+	}
+	
+	/* 상품정보 삭제 */	
+	@PostMapping("/goodsDelete")
+	public String goodsDeletePost(int imageId, RedirectAttributes rttr) {
+		logger.info("goodsDeletePost......");
+		int result = adminService.goodsDelete(imageId);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/admin/goodsManage";
+	}
+	
+	/* 작가 정보 삭제 */
+	@PostMapping("/authorDelete")
+	public String authorDeletePost(int authorId, RedirectAttributes rttr) {
+		
+		logger.info("authorDeletePost..........");
+		
+		int result = 0;
+		
+		try {
+			
+			result = authorService.authorDelete(authorId);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			result = 2;
+			rttr.addFlashAttribute("delete_result", result);
+			
+			return "redirect:/admin/authorManage";
+			
+		}
+		
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/admin/authorManage";
 		
 	}
 	

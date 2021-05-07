@@ -83,24 +83,38 @@ public class AdminMapperTest {
 //	}
 	
 	/* 상품 정보 수정 */
+//	@Test
+//	public void goodsModifyTest() {
+//		
+//		ImageVO image = new ImageVO();
+//		
+//		image.setImageId(1);
+//		image.setImageName("mapper 테스트");
+//		image.setAuthorId(1);
+//		image.setPubleYear("2021-03-18");
+//		image.setPublisher("출판사");
+//		image.setCatCode("103002");
+//		image.setImagePrice(20000);
+//		image.setImageStock(300);
+//		image.setImageDiscount(0.23);
+//		image.setImageIntro("책 소개 ");
+//		image.setImageContents("책 목차 ");
+//		
+//		mapper.goodsModify(image);
+//		
+//	}
+	
+	/* 상품 정보 삭제 */
 	@Test
-	public void goodsModifyTest() {
+	public void goodsDeleteTest() {
 		
-		ImageVO image = new ImageVO();
+		int bookId = 169;
 		
-		image.setImageId(1);
-		image.setImageName("mapper 테스트");
-		image.setAuthorId(1);
-		image.setPubleYear("2021-03-18");
-		image.setPublisher("출판사");
-		image.setCatCode("103002");
-		image.setImagePrice(20000);
-		image.setImageStock(300);
-		image.setImageDiscount(0.23);
-		image.setImageIntro("책 소개 ");
-		image.setImageContents("책 목차 ");
+		int result = mapper.goodsDelete(bookId);
 		
-		mapper.goodsModify(image);
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}
 		
 	}
 }
