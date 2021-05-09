@@ -143,6 +143,14 @@
                     				<span class="ck_warn imageContents_warn">이미지 목차를 입력해주세요.</span>
                     			</div>
                     		</div>
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>이미지</label>
+                    			</div>
+                    			<div class="form_section_content">
+									<input type="file" multiple id ="fileItem" name='uploadFile' style="height: 30px;">
+                    			</div>
+                    		</div> 
                    		</form>
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">취 소</button>
@@ -523,6 +531,78 @@ ClassicEditor
 			$(".span_discount").html(discountPrice);
 		}
 	});
+	  
+	/* 이미지 업로드 */
+	$("input[type='file']").on("change", function(e){
+		alert("동작");
+		
+		let formData = new FormData();
+		let fileInput = $('input[name="uploadFile"]');
+		let fileList = fileInput[0].files;
+		let fileObj = fileList[0];
+		
+		
+		/* console.log("fileList : " + fileList);
+		console.log("fileObj : " + fileObj);
+		console.log("fileName : " + fileObj.name);
+		console.log("fileSize : " + fileObj.size);
+		console.log("fileType(MimeType) : " + fileObj.type); */
+		
+		if(!fileCheck(fileObj.name, fileObj.size)){
+			return false;
+		}
+		
+		/* 파일 한개만 */
+		/* formData.append("uploadFile",fileObj); */
+		
+		/* 파일 여러개 */
+		for(let i = 0; i < fileList.length; i++){
+			formData.append("uploadFile", fileList[i]);
+		}
+		
+		 /* url : 서버로 요청을 보낼 url
+
+		 processData : 서버로 전송할 데이터를 queryStirng 형태로 변환할지 여부
+
+		 contentType : 서버로 전송되는 데이터의 content-type
+
+		 data : 서버로 전송할 데이터
+
+		 type : 서보 요청 타입(GET, POST)
+
+		 dataType : 서버로부터 반환받을 데이터 타입 */
+		
+		$.ajax({
+			url: '/admin/uploadAjaxAction',
+	    	processData : false,
+	    	contentType : false,
+	    	data : formData,
+	    	type : 'POST',
+	    	dataType : 'json'
+		});
+	});
+	
+	/* var, method related with attachFile */
+	let regex = new RegExp("(.*?)\.(jpg|png)$");
+	let maxSize = 1048576; //1MB	
+	
+	function fileCheck(fileName, fileSize){
+		
+		if(!regex.test(fileName)){
+			alert("해당 종류의 파일은 업로드할 수 없습니다.");
+			return false;
+		}
+
+		if(fileSize >= maxSize){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+			  
+		
+		
+		return true;		
+		
+	}
 
 </script>  
  
