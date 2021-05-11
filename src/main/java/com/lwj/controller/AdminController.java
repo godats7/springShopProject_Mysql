@@ -1,5 +1,8 @@
 package com.lwj.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -263,6 +266,21 @@ public class AdminController {
 	public void uploadAjaxActionPost(MultipartFile[] uploadFile) {
 		
 		logger.info("uploadAjaxActionPost..........");
+		String uploadFolder = "C:\\upload";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		/* 날짜 및 폴더 경로 */
+		Date date = new Date();		
+		String str = sdf.format(date);		
+		String datePath = str.replace("-", File.separator);
+		
+		/* 폴더 생성 */
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
 		
 //		logger.info("파일 이름 : " + uploadFile.getOriginalFilename());
 //		logger.info("파일 타입 : " + uploadFile.getContentType());
@@ -276,13 +294,13 @@ public class AdminController {
 					logger.info("파일 크기 : " + multipartFile.getSize());			
 				}
 				
-				//기본 for
-				for(int i = 0; i < uploadFile.length; i++) {
-					logger.info("-----------------------------------------------");
-					logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
-					logger.info("파일 타입 : " + uploadFile[i].getContentType());
-					logger.info("파일 크기 : " + uploadFile[i].getSize());			
-				}
+//				//기본 for
+//				for(int i = 0; i < uploadFile.length; i++) {
+//					logger.info("-----------------------------------------------");
+//					logger.info("파일 이름 : " + uploadFile[i].getOriginalFilename());
+//					logger.info("파일 타입 : " + uploadFile[i].getContentType());
+//					logger.info("파일 크기 : " + uploadFile[i].getSize());			
+//				}
 	}
 	
 	
