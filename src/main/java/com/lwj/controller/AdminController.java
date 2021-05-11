@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -291,7 +292,25 @@ public class AdminController {
 					logger.info("-----------------------------------------------");
 					logger.info("파일 이름 : " + multipartFile.getOriginalFilename());
 					logger.info("파일 타입 : " + multipartFile.getContentType());
-					logger.info("파일 크기 : " + multipartFile.getSize());			
+					logger.info("파일 크기 : " + multipartFile.getSize());	
+					
+					/* 파일 이름 */
+					String uploadFileName = multipartFile.getOriginalFilename();	
+					
+					/* uuid 적용 파일 이름 */
+					String uuid = UUID.randomUUID().toString();
+					
+					uploadFileName = uuid + "_" + uploadFileName;
+					
+					/* 파일 위치, 파일 이름을 합친 File 객체 */
+					File saveFile = new File(uploadPath, uploadFileName);
+					
+					/* 파일 저장 */
+					try {
+						multipartFile.transferTo(saveFile);
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 
 				}
 				
 //				//기본 for
