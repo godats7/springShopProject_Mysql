@@ -572,13 +572,25 @@ ClassicEditor
 
 		 dataType : 서버로부터 반환받을 데이터 타입 */
 		
-		$.ajax({
+		/* $.ajax({
 			url: '/admin/uploadAjaxAction',
 	    	processData : false,
 	    	contentType : false,
 	    	data : formData,
 	    	type : 'POST',
 	    	dataType : 'json'
+		}); */
+		
+		$.ajax({
+			url: '/admin/uploadAjaxAction',
+	    	processData : false,
+	    	contentType : false,
+	    	data : formData,
+	    	type : 'POST',
+	    	dataType : 'json',
+	    	success : function(result){
+	    		console.log(result);
+	    	}
 		});
 	});
 	
