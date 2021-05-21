@@ -3,6 +3,8 @@ package com.lwj.controller;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -278,6 +280,28 @@ public class AdminController {
 	public ResponseEntity<List<AttachImageVO>> uploadAjaxActionPost(MultipartFile[] uploadFile) {
 		
 		logger.info("uploadAjaxActionPost..........");
+		
+		/* 이미지 파일 체크 */
+		for(MultipartFile multipartFile: uploadFile) {
+			
+			File checkfile = new File(multipartFile.getOriginalFilename());
+			String type = null;
+			
+			try {
+				type = Files.probeContentType(checkfile.toPath());
+				logger.info("MIME TYPE : " + type);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(!type.startsWith("image")) {
+				
+				List<AttachImageVO> list = null;
+				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
+				
+			}
+			
+		}
+		
 		String uploadFolder = "C:\\upload";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

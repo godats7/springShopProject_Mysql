@@ -590,6 +590,9 @@ ClassicEditor
 	    	dataType : 'json',
 	    	success : function(result){
 	    		console.log(result);
+	    	},
+	    	error : function(result){
+	    		alert("이미지 파일이 아닙니다.");
 	    	}
 		});
 	});
