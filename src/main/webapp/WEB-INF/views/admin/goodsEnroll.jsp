@@ -149,6 +149,12 @@
                     			</div>
                     			<div class="form_section_content">
 									<input type="file" multiple id ="fileItem" name='uploadFile' style="height: 30px;">
+									<div id="uploadResult">
+									<!-- 	<div id="result_card">
+											<div class="imgDeleteBtn">x</div>
+											<img src="/resources/img/Logo.png">
+										</div> -->
+									</div>
                     			</div>
                     		</div> 
                    		</form>
@@ -590,6 +596,7 @@ ClassicEditor
 	    	dataType : 'json',
 	    	success : function(result){
 	    		console.log(result);
+	    		showUploadImage(result);
 	    	},
 	    	error : function(result){
 	    		alert("이미지 파일이 아닙니다.");
@@ -616,6 +623,29 @@ ClassicEditor
 		
 		
 		return true;		
+		
+	}
+	
+	/* 이미지 출력 */
+	function showUploadImage(uploadResultArr){
+		
+		/* 전달받은 데이터 검증 */
+		if(!uploadResultArr || uploadResultArr.length == 0){return}
+		
+		let uploadResult = $("#uploadResult");
+		
+		let obj = uploadResultArr[0];
+		
+		let str = "";
+		
+		let fileCallPath = encodeURIComponent(obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName);
+		
+		str += "<div id='result_card'>";
+		str += "<img src='/display?fileName=" + fileCallPath +"'>";
+		str += "<div class='imgDeleteBtn'>x</div>";
+		str += "</div>";		
+		
+   		uploadResult.append(str); 
 		
 	}
 
