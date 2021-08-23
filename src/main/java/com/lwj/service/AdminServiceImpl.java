@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lwj.mapper.AdminMapper;
 import com.lwj.model.CategoryVO;
@@ -24,7 +25,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 
-	
+	@Transactional
 	@Override
 	public void imageEnroll(ImageVO image) {
 		// TODO Auto-generated method stub
@@ -33,6 +34,22 @@ public class AdminServiceImpl implements AdminService{
 		
 		adminMapper.imageEnroll(image);
 		
+		if(image.getImageList() == null || image.getImageList().size() <= 0) {
+			return;
+		}
+		
+//		image.getImageList().forEach(attach ->{
+//			
+//			attach.setImageId(image.getImageId());
+//			adminMapper.imageEnroll(image);
+//			
+//		});
+		
+		// 일반적 for문
+        for(int i = 0; i < image.getImageList().size(); i++) {
+        	image.setImageId(image.getImageId());
+        	adminMapper.imageEnroll(image);
+		}
 	}
 
 	@Override

@@ -194,4 +194,16 @@ ADD CONSTRAINT `goods_image_gifk02`
 
 alter table goods_image add foreign key (authorId) references image_author(authorId);
 alter table goods_image add foreign key (catCode) references goods_img_cat(catCode); 
+
+
+  create table upload_image(
+        imageId int ,
+        fileName varchar(100) not null,
+        uploadPath varchar(200) not null,
+        uuid varchar(100)not null ,
+        primary key (uuid),
+        foreign key (imageId) references goods_image(iamgeId)
+    );
+
+
 	  

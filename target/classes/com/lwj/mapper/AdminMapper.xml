@@ -7,6 +7,12 @@
   <!-- 작가 등록 -->
   	<insert id="imageEnroll">
   	
+  		<selectKey resultType="int" keyProperty="imageId" order="AFTER">
+  		
+  			SELECT LAST_INSERT_ID()
+  		
+  		</selectKey>
+  	
   		insert into goods_image(imageName, authorId, publeYear, publisher, catCode, imagePrice, imageStock, imageDiscount, imageIntro, imageContents)
 		values(#{imageName},#{authorId}, #{publeYear},#{publisher},#{catCode},#{imagePrice},#{imageStock},#{imageDiscount},#{imageIntro},#{imageContents})
 

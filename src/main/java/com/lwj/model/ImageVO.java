@@ -1,6 +1,7 @@
 package com.lwj.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class ImageVO {
 
@@ -48,6 +49,9 @@ public class ImageVO {
 	
 	/* 수정 날짜 */
 	private Date updateDate;
+
+	/* 이미지 정보*/
+	private List<AttachImageVO> imageList;
 
 	public int getImageId() {
 		return imageId;
@@ -167,6 +171,14 @@ public class ImageVO {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}		
+
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
 	}
 
 	@Override
@@ -175,8 +187,22 @@ public class ImageVO {
 				+ authorName + ", publeYear=" + publeYear + ", publisher=" + publisher + ", catCode=" + catCode
 				+ ", catName=" + catName + ", imagePrice=" + imagePrice + ", imageStock=" + imageStock
 				+ ", imageDiscount=" + imageDiscount + ", imageIntro=" + imageIntro + ", imageContents=" + imageContents
-				+ ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+				+ ", regDate=" + regDate + ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "ImageVO [imageId=" + imageId + ", imageName=" + imageName + ", authorId=" + authorId + ", authorName="
+//				+ authorName + ", publeYear=" + publeYear + ", publisher=" + publisher + ", catCode=" + catCode
+//				+ ", catName=" + catName + ", imagePrice=" + imagePrice + ", imageStock=" + imageStock
+//				+ ", imageDiscount=" + imageDiscount + ", imageIntro=" + imageIntro + ", imageContents=" + imageContents
+//				+ ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+//	}
+	
+	
+	
+	
+	
 	
 	
 	
