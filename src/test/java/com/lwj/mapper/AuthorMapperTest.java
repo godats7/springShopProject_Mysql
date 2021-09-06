@@ -89,18 +89,18 @@ public class AuthorMapperTest {
 //	}
 	
 	/* 작가 정보 삭제 */
-	@Test
-	public void authorDeleteTest() {
-		
-		
-		int authorId = 129;
-		
-		int result = mapper.authorDelete(authorId);
-		
-		if(result == 1) {
-			System.out.println("삭제 성공");
-		}
-		
-	}
+//	@Test
+//	public void authorDeleteTest() {
+//		
+//		
+//		int authorId = 129;
+//		
+//		int result = mapper.authorDelete(authorId);
+//		
+//		if(result == 1) {
+//			System.out.println("삭제 성공");
+//		}
+//		
+//	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.lwj.model.AttachImageVO;
 import com.lwj.model.Criteria;
 import com.lwj.model.ImageVO;
 
@@ -17,6 +18,23 @@ public class AdminMapperTest {
 	
 	@Autowired
 	private AdminMapper mapper;
+	
+	
+	/* 이미지 등록 */
+	@Test
+	public void imageEnrollTest() {
+		
+		AttachImageVO vo = new AttachImageVO();
+		
+		vo.setImageId(14);
+		vo.setFileName("test");
+		vo.setUploadPath("test");
+		vo.setUuid("test");
+		
+		mapper.uploadImageEnroll(vo);
+		
+	}
+	
 	
 //	/* 상품 등록 */
 //	@Test
@@ -105,16 +123,16 @@ public class AdminMapperTest {
 //	}
 	
 	/* 상품 정보 삭제 */
-	@Test
-	public void goodsDeleteTest() {
-		
-		int bookId = 169;
-		
-		int result = mapper.goodsDelete(bookId);
-		
-		if(result == 1) {
-			System.out.println("삭제 성공");
-		}
-		
-	}
+//	@Test
+//	public void goodsDeleteTest() {
+//		
+//		int bookId = 169;
+//		
+//		int result = mapper.goodsDelete(bookId);
+//		
+//		if(result == 1) {
+//			System.out.println("삭제 성공");
+//		}
+//		
+//	}
 }

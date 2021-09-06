@@ -2,6 +2,7 @@ package com.lwj.mapper;
 
 import java.util.List;
 
+import com.lwj.model.AttachImageVO;
 import com.lwj.model.CategoryVO;
 import com.lwj.model.Criteria;
 import com.lwj.model.ImageVO;
@@ -28,6 +29,9 @@ public interface AdminMapper {
 	
 	/* 상품 정보 삭제 */
 	public int goodsDelete(int imageId);
+	
+	/* 업로드(이미지 등록) */
+	public void uploadImageEnroll(AttachImageVO image);
 	
 	
 }
